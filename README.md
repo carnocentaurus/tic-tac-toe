@@ -1,3 +1,3 @@
 # Tic Tac Toe
 
-**Status: ** Under active development
+Status: Under active development
