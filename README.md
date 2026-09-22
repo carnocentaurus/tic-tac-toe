@@ -1,1 +1,3 @@
-# tic-tac-toe
+# Tic Tac Toe
+
+**Status: ** Under active development
