@@ -20,6 +20,19 @@ function showGrid() {
 showGrid();
 
 function playGame(playerChoice) {
+    if (isNaN(playerChoice)) {
+        console.error('Enter a valid number!');
+        return;
+    }
+    if (playerChoice < 0) {
+        console.error('0 is the minimum input!');
+        return;
+    }
+    if (playerChoice > 8) {
+        console.error('8 is the maximum input!');
+        return;
+    }
+
     grid[playerChoice] = 'x';
     showGrid();
 }
