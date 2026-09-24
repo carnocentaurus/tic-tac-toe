@@ -19,20 +19,26 @@ function showGrid() {
 
 showGrid();
 
-function playGame(playerChoice) {
-    if (isNaN(playerChoice)) {
+function playGame(playerOneChoice, playerTwoChoice) {
+    if (playerOneChoice === playerTwoChoice) {
+        console.error("Players can't pick the same cell at once!");
+        return;
+    }
+    if (isNaN(playerOneChoice) || isNaN(playerTwoChoice)) {
         console.error('Enter a valid number!');
         return;
     }
-    if (playerChoice < 0) {
+    if (playerOneChoice < 0 || playerTwoChoice < 0) {
         console.error('0 is the minimum input!');
         return;
     }
-    if (playerChoice > 8) {
+    if (playerOneChoice > 8 || playerTwoChoice > 8) {
         console.error('8 is the maximum input!');
         return;
     }
 
-    grid[playerChoice] = 'x';
+    grid[playerOneChoice] = 'x';
+    grid[playerTwoChoice] = 'o';
+
     showGrid();
 }
