@@ -11,6 +11,9 @@ const column3 = grid.filter(item => item === 2 || item === 5 || item === 8);
 const diagonal1 = grid.filter(item => item === 0 || item === 4 || item === 8);
 const diagonal2 = grid.filter(item => item === 2 || item === 4 || item === 6);
 
+const playerOneCells = [];
+const playerTwoCells = [];
+
 function showGrid() {
     console.log(grid[0], grid[1], grid[2]);
     console.log(grid[3], grid[4], grid[5]);
@@ -20,6 +23,18 @@ function showGrid() {
 showGrid();
 
 function playGame(playerOneChoice, playerTwoChoice) {
+    playerOneCells.forEach(cell => {
+        if (playerOneChoice === cell || playerTwoChoice === cell) {
+            throw new Error('Player one already marked this cell!');
+        }
+    });
+
+    playerTwoCells.forEach(cell => {
+        if (playerTwoChoice === cell || playerOneChoice === cell) {
+            throw new Error('Player two already marked this cell!');
+        }
+    });
+
     if (playerOneChoice === playerTwoChoice) {
         console.error("Players can't pick the same cell at once!");
         return;
@@ -39,6 +54,9 @@ function playGame(playerOneChoice, playerTwoChoice) {
 
     grid[playerOneChoice] = 'x';
     grid[playerTwoChoice] = 'o';
+
+    playerOneCells.push(playerOneChoice);
+    playerTwoCells.push(playerTwoChoice);
 
     showGrid();
 }
