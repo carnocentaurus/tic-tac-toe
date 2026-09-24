@@ -25,13 +25,13 @@ showGrid();
 function playGame(playerOneChoice, playerTwoChoice) {
     playerOneCells.forEach(cell => {
         if (playerOneChoice === cell || playerTwoChoice === cell) {
-            throw new Error('Player one already marked this cell!');
+            throw new Error(`Player one already marked the #${cell} cell!`);
         }
     });
 
     playerTwoCells.forEach(cell => {
         if (playerTwoChoice === cell || playerOneChoice === cell) {
-            throw new Error('Player two already marked this cell!');
+            throw new Error(`Player two already marked the #${cell} cell!`);
         }
     });
 
