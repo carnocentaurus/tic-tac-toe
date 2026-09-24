@@ -22,7 +22,7 @@ function showGrid() {
 
 showGrid();
 
-function playGame(playerOneChoice, playerTwoChoice) {
+function handleRepeatedCellInputs(playerOneChoice, playerTwoChoice) {
     playerOneCells.forEach(cell => {
         if (playerOneChoice === cell || playerTwoChoice === cell) {
             throw new Error(`Player one already marked the #${cell} cell!`);
@@ -34,6 +34,10 @@ function playGame(playerOneChoice, playerTwoChoice) {
             throw new Error(`Player two already marked the #${cell} cell!`);
         }
     });
+}
+
+function playGame(playerOneChoice, playerTwoChoice) {
+    handleRepeatedCellInputs(playerOneChoice, playerTwoChoice);
 
     if (playerOneChoice === playerTwoChoice) {
         console.error("Players can't pick the same cell at once!");
