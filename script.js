@@ -38,13 +38,12 @@ function handleRepeatedCellInputs(playerOneChoice, playerTwoChoice) {
 
 function isPatternMatch(playerCells, rowPattern) {
     for (let i = 0; i < playerCells.length; i++) {
-        if (playerCells[i] === rowPattern[i]) {
-            alert(true)
-        }
-        else {
+        if (playerCells[i] !== rowPattern[i]) {
             alert(false)
         }
     }
+
+    alert(true)
 }
 
 function playGame(playerOneChoice, playerTwoChoice) {
