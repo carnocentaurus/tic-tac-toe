@@ -36,6 +36,17 @@ function handleRepeatedCellInputs(playerOneChoice, playerTwoChoice) {
     });
 }
 
+function isPatternMatch(playerCells, rowPattern) {
+    for (let i = 0; i < playerCells.length; i++) {
+        if (playerCells[i] === rowPattern[i]) {
+            alert(true)
+        }
+        else {
+            alert(false)
+        }
+    }
+}
+
 function playGame(playerOneChoice, playerTwoChoice) {
     handleRepeatedCellInputs(playerOneChoice, playerTwoChoice);
 
@@ -60,7 +71,12 @@ function playGame(playerOneChoice, playerTwoChoice) {
     grid[playerTwoChoice] = 'o';
 
     playerOneCells.push(playerOneChoice);
+    console.log(playerOneCells)
     playerTwoCells.push(playerTwoChoice);
+
+    if (playerOneCells.length === 3) {
+        isPatternMatch(playerOneCells, row1);
+    }
 
     showGrid();
 }
