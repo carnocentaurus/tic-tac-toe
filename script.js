@@ -58,8 +58,11 @@ function isPatternMatch(playerOneCells, playerTwoCells, rowPattern) {
         }
     }
 
-    if (isPlayerOnePatternMatch === true || isPlayerTwoPatternMatch === true) {
-        console.log('Pattern match!');
+    if (isPlayerOnePatternMatch === true) {
+        console.log('Player 1 wins!');
+    }
+    else if (isPlayerTwoPatternMatch === true) {
+        console.log('Player 2 wins!');
     }
 }
 
