@@ -36,6 +36,12 @@ function handleRepeatedCellInputs(playerOneChoice, playerTwoChoice) {
     });
 }
 
+function handleGameEnd(gameResult, winningPlayer) {
+    if (gameResult === 'hasWinner') {
+        console.log(`Game over! ${winningPlayer} wins!`);
+    }
+}
+
 function isPatternMatch(playerOneCells, playerTwoCells, rowPattern) {
     let isPlayerOnePatternMatch;
     let isPlayerTwoPatternMatch;
@@ -59,10 +65,10 @@ function isPatternMatch(playerOneCells, playerTwoCells, rowPattern) {
     }
 
     if (isPlayerOnePatternMatch === true) {
-        console.log('Player 1 wins!');
+        handleGameEnd('hasWinner', 'Player 1');
     }
     else if (isPlayerTwoPatternMatch === true) {
-        console.log('Player 2 wins!');
+        handleGameEnd('hasWinner', 'Player 2');
     }
 }
 
@@ -92,9 +98,9 @@ function playGame(playerOneChoice, playerTwoChoice) {
     playerOneCells.push(playerOneChoice);
     playerTwoCells.push(playerTwoChoice);
 
+    showGrid();
+
     if (playerOneCells.length >= 3) {
         isPatternMatch(playerOneCells, playerTwoCells, row1);
     }
-
-    showGrid();
 }
