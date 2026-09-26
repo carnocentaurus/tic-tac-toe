@@ -37,8 +37,8 @@ function handleRepeatedCellInputs(playerOneChoice, playerTwoChoice) {
 }
 
 function isPatternMatch(playerOneCells, playerTwoCells, rowPattern) {
-    let isPlayerOnePatternMatch;
-    let isPlayerTwoPatternMatch;
+    let isPlayerOnePatternMatch = false;
+    let isPlayerTwoPatternMatch = false;
 
     for (let i = 0; i < playerOneCells.length; i++) {
         if (playerOneCells[i] !== rowPattern[i]) {
@@ -88,7 +88,7 @@ function playGame(playerOneChoice, playerTwoChoice) {
     playerOneCells.push(playerOneChoice);
     playerTwoCells.push(playerTwoChoice);
 
-    if (playerOneCells.length === 3) {
+    if (playerOneCells.length >= 3) {
         isPatternMatch(playerOneCells, playerTwoCells, row1);
     }
 
