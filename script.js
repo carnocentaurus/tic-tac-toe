@@ -37,27 +37,29 @@ function handleRepeatedCellInputs(playerOneChoice, playerTwoChoice) {
 }
 
 function isPatternMatch(playerOneCells, playerTwoCells, rowPattern) {
-    let patternMatch;
+    let isPlayerOnePatternMatch;
+    let isPlayerTwoPatternMatch;
 
     for (let i = 0; i < playerOneCells.length; i++) {
         if (playerOneCells[i] !== rowPattern[i]) {
-            patternMatch = false;
+            isPlayerOnePatternMatch = false;
         }
         else {
-            patternMatch = true;
+            isPlayerOnePatternMatch = true;
         }
     }
 
-    /*for (let i = 0; i < playerTwoCells.length; i++) {
+    for (let i = 0; i < playerTwoCells.length; i++) {
         if (playerTwoCells[i] !== rowPattern[i]) {
-            patternMatch = false;
+            isPlayerTwoPatternMatch = false;
         }
         else {
-            patternMatch = true;
+            isPlayerTwoPatternMatch = true;
         }
-    }*/
+    }
 
-    alert(patternMatch);
+    console.log(`Player one pattern match: ${isPlayerOnePatternMatch}`);
+    console.log(`Player two pattern match: ${isPlayerTwoPatternMatch}`);
 }
 
 function playGame(playerOneChoice, playerTwoChoice) {
