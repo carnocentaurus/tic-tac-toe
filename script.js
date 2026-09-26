@@ -14,6 +14,8 @@ const diagonal2 = grid.filter(item => item === 2 || item === 4 || item === 6);
 const playerOneCells = [];
 const playerTwoCells = [];
 
+let isGameEnd = false;
+
 function showGrid() {
     console.log(grid[0], grid[1], grid[2]);
     console.log(grid[3], grid[4], grid[5]);
@@ -66,13 +68,20 @@ function isPatternMatch(playerOneCells, playerTwoCells, rowPattern) {
 
     if (isPlayerOnePatternMatch === true) {
         handleGameEnd('hasWinner', 'Player 1');
+        isGameEnd = true;
     }
     else if (isPlayerTwoPatternMatch === true) {
         handleGameEnd('hasWinner', 'Player 2');
+        isGameEnd = true;
     }
 }
 
 function playGame(playerOneChoice, playerTwoChoice) {
+    if (isGameEnd === true) {
+        console.error('Game has already ended!');
+        return;
+    }
+
     handleRepeatedCellInputs(playerOneChoice, playerTwoChoice);
 
     if (playerOneChoice === playerTwoChoice) {
