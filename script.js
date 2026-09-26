@@ -15,6 +15,7 @@ const playerOneCells = [];
 const playerTwoCells = [];
 
 let isGameEnd = false;
+let rounds = 0;
 
 function showGrid() {
     console.log(grid[0], grid[1], grid[2]);
@@ -39,8 +40,13 @@ function handleRepeatedCellInputs(playerOneChoice, playerTwoChoice) {
 }
 
 function handleGameEnd(gameResult, winningPlayer) {
+    isGameEnd = true;
+
     if (gameResult === 'hasWinner') {
         console.log(`Game over! ${winningPlayer} wins!`);
+    }
+    else if (gameResult === 'tie') {
+        console.log('Game over! its a tie!');
     }
 }
 
@@ -68,11 +74,16 @@ function isPatternMatch(playerOneCells, playerTwoCells, rowPattern) {
 
     if (isPlayerOnePatternMatch === true) {
         handleGameEnd('hasWinner', 'Player 1');
-        isGameEnd = true;
     }
     else if (isPlayerTwoPatternMatch === true) {
         handleGameEnd('hasWinner', 'Player 2');
-        isGameEnd = true;
+    }
+    else if (
+        rounds > 3 &&
+        isPlayerOnePatternMatch === false &&
+        isPlayerTwoPatternMatch === false
+    ) {
+        handleGameEnd('tie', '');
     }
 }
 
@@ -100,6 +111,8 @@ function playGame(playerOneChoice, playerTwoChoice) {
         console.error('8 is the maximum input!');
         return;
     }
+
+    rounds ++;
 
     grid[playerOneChoice] = 'x';
     grid[playerTwoChoice] = 'o';
