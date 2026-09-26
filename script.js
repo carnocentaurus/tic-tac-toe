@@ -40,26 +40,32 @@ function isPatternMatch(playerOneCells, playerTwoCells, rowPattern) {
     let isPlayerOnePatternMatch = false;
     let isPlayerTwoPatternMatch = false;
 
-    for (let i = 0; i < playerOneCells.length; i++) {
-        if (playerOneCells[i] !== rowPattern[i]) {
-            isPlayerOnePatternMatch = false;
+    if (isPlayerOnePatternMatch === false && isPlayerTwoPatternMatch === false) {
+        for (let i = 0; i < playerOneCells.length; i++) {
+            if (playerOneCells[i] !== rowPattern[i]) {
+                isPlayerOnePatternMatch = false;
+            }
+            else {
+                isPlayerOnePatternMatch = true;
+            }
         }
-        else {
-            isPlayerOnePatternMatch = true;
+
+        for (let i = 0; i < playerTwoCells.length; i++) {
+            if (playerTwoCells[i] !== rowPattern[i]) {
+                isPlayerTwoPatternMatch = false;
+            }
+            else {
+                isPlayerTwoPatternMatch = true;
+            }
+        }
+
+        console.log(`Player one pattern match: ${isPlayerOnePatternMatch}`);
+        console.log(`Player two pattern match: ${isPlayerTwoPatternMatch}`);
+
+        if (isPlayerOnePatternMatch === true || isPlayerTwoPatternMatch === true) {
+            console.log('Pattern match!');
         }
     }
-
-    for (let i = 0; i < playerTwoCells.length; i++) {
-        if (playerTwoCells[i] !== rowPattern[i]) {
-            isPlayerTwoPatternMatch = false;
-        }
-        else {
-            isPlayerTwoPatternMatch = true;
-        }
-    }
-
-    console.log(`Player one pattern match: ${isPlayerOnePatternMatch}`);
-    console.log(`Player two pattern match: ${isPlayerTwoPatternMatch}`);
 }
 
 function playGame(playerOneChoice, playerTwoChoice) {
