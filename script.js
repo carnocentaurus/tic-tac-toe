@@ -1,16 +1,16 @@
-const gameboard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+const GAMEBOARD = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
-const patterns = {
-    row1: gameboard.filter(item => item < 3),
-    row2: gameboard.filter(item => item > 2 && item < 6),
-    row3: gameboard.filter(item => item > 5),
+const PATTERNS = {
+    row1: GAMEBOARD.filter(item => item < 3),
+    row2: GAMEBOARD.filter(item => item > 2 && item < 6),
+    row3: GAMEBOARD.filter(item => item > 5),
 
-    column1: gameboard.filter(item => item === 0 || item === 3 || item === 6),
-    column2: gameboard.filter(item => item === 1 || item === 4 || item === 7),
-    column3: gameboard.filter(item => item === 2 || item === 5 || item === 8),
+    column1: GAMEBOARD.filter(item => item === 0 || item === 3 || item === 6),
+    column2: GAMEBOARD.filter(item => item === 1 || item === 4 || item === 7),
+    column3: GAMEBOARD.filter(item => item === 2 || item === 5 || item === 8),
 
-    diagonal1: gameboard.filter(item => item === 0 || item === 4 || item === 8),
-    diagonal2: gameboard.filter(item => item === 2 || item === 4 || item === 6),
+    diagonal1: GAMEBOARD.filter(item => item === 0 || item === 4 || item === 8),
+    diagonal2: GAMEBOARD.filter(item => item === 2 || item === 4 || item === 6),
 }
 
 const playerOneCells = [];
@@ -20,9 +20,9 @@ let isGameEnd = false;
 let rounds = 0;
 
 function showGameboard() {
-    console.log(gameboard[0], gameboard[1], gameboard[2]);
-    console.log(gameboard[3], gameboard[4], gameboard[5]);
-    console.log(gameboard[6], gameboard[7], gameboard[8]);
+    console.log(GAMEBOARD[0], GAMEBOARD[1], GAMEBOARD[2]);
+    console.log(GAMEBOARD[3], GAMEBOARD[4], GAMEBOARD[5]);
+    console.log(GAMEBOARD[6], GAMEBOARD[7], GAMEBOARD[8]);
 }
 
 showGameboard();
@@ -116,8 +116,8 @@ function playGame(playerOneChoice, playerTwoChoice) {
 
     rounds ++;
 
-    gameboard[playerOneChoice] = 'x';
-    gameboard[playerTwoChoice] = 'o';
+    GAMEBOARD[playerOneChoice] = 'x';
+    GAMEBOARD[playerTwoChoice] = 'o';
 
     playerOneCells.push(playerOneChoice);
     playerTwoCells.push(playerTwoChoice);
