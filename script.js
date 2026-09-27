@@ -52,27 +52,17 @@ function handleGameEnd(gameResult, winningPlayer) {
     }
 }
 
-function isPatternMatch(playerOneCells, playerTwoCells, rowPattern) {
-    let isPlayerOnePatternMatch;
-    let isPlayerTwoPatternMatch;
+function areArraysEqual(playerCells, pattern) {
+    if (playerCells.length !== pattern.length) return;
+    return playerCells.every((value, index) => value === pattern[index]);
+}
 
-    for (let i = 0; i < playerOneCells.length; i++) {
-        if (playerOneCells[i] !== rowPattern[i]) {
-            isPlayerOnePatternMatch = false;
-        }
-        else {
-            isPlayerOnePatternMatch = true;
-        }
-    }
+function isPatternMatch(playerOneCells, playerTwoCells) {
+    const isPlayerOnePatternMatch = Object.values(PATTERNS).some(pattern => 
+        areArraysEqual(playerOneCells, pattern));
 
-    for (let i = 0; i < playerTwoCells.length; i++) {
-        if (playerTwoCells[i] !== rowPattern[i]) {
-            isPlayerTwoPatternMatch = false;
-        }
-        else {
-            isPlayerTwoPatternMatch = true;
-        }
-    }
+    const isPlayerTwoPatternMatch = Object.values(PATTERNS).some(pattern =>
+        areArraysEqual(playerTwoCells, pattern));
 
     if (isPlayerOnePatternMatch === true) {
         handleGameEnd('hasWinner', 'Player 1');
@@ -125,6 +115,6 @@ function playGame(playerOneChoice, playerTwoChoice) {
     showGameboard();
 
     if (playerOneCells.length >= 3) {
-        isPatternMatch(playerOneCells, playerTwoCells, row1);
+        isPatternMatch(playerOneCells, playerTwoCells);
     }
 }
