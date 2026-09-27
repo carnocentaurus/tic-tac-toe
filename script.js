@@ -54,7 +54,9 @@ function handleGameEnd(gameResult, winningPlayer) {
 
 function areArraysEqual(playerCells, pattern) {
     if (playerCells.length !== pattern.length) return;
-    return playerCells.every((value, index) => value === pattern[index]);
+    
+    const set = new Set(pattern);
+    return playerCells.every(cell => set.has(cell));
 }
 
 function isPatternMatch(playerOneCells, playerTwoCells) {
