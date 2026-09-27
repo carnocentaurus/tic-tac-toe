@@ -1,15 +1,17 @@
 const gameboard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
-const row1 = gameboard.filter(item => item < 3);
-const row2 = gameboard.filter(item => item > 2 && item < 6);
-const row3 = gameboard.filter(item => item > 5);
+const patterns = {
+    row1: gameboard.filter(item => item < 3),
+    row2: gameboard.filter(item => item > 2 && item < 6),
+    row3: gameboard.filter(item => item > 5),
 
-const column1 = gameboard.filter(item => item === 0 || item === 3 || item === 6);
-const column2 = gameboard.filter(item => item === 1 || item === 4 || item === 7);
-const column3 = gameboard.filter(item => item === 2 || item === 5 || item === 8);
+    column1: gameboard.filter(item => item === 0 || item === 3 || item === 6),
+    column2: gameboard.filter(item => item === 1 || item === 4 || item === 7),
+    column3: gameboard.filter(item => item === 2 || item === 5 || item === 8),
 
-const diagonal1 = gameboard.filter(item => item === 0 || item === 4 || item === 8);
-const diagonal2 = gameboard.filter(item => item === 2 || item === 4 || item === 6);
+    diagonal1: gameboard.filter(item => item === 0 || item === 4 || item === 8),
+    diagonal2: gameboard.filter(item => item === 2 || item === 4 || item === 6),
+}
 
 const playerOneCells = [];
 const playerTwoCells = [];
