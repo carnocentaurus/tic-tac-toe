@@ -1,4 +1,5 @@
 console.log('TIC TAC TOE (Console Edition)');
+console.log("Example: Type 'play(4)' to mark the #4 cell");
 console.log('');
 
 const playerOneName = prompt('Player one name:') || 'Player 1';
@@ -107,7 +108,7 @@ function isPatternMatch(playerOneCells, playerTwoCells) {
     }
 }
 
-function playGame(playerOneChoice, playerTwoChoice) {
+function play(playerOneChoice, playerTwoChoice) {
     if (isGameEnd === true) {
         console.error('Game has already ended!');
         return;
