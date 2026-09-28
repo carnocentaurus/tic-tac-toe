@@ -114,6 +114,9 @@ function play(playerOneChoice, playerTwoChoice) {
         return;
     }
 
+    playerOneChoice = Math.floor(playerOneChoice);
+    playerTwoChoice = Math.floor(playerTwoChoice);
+
     handleRepeatedCellInputs(playerOneChoice, playerTwoChoice);
 
     if (playerOneChoice === playerTwoChoice) {
