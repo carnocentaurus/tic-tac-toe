@@ -33,6 +33,24 @@ function showGameboard() {
 
 showGameboard();
 
+function sanitizePlayerName(playerNameInput, playerNumber) {
+    playerNameInput = playerNameInput.trim();
+
+    if (playerNameInput === null || playerNameInput === '') {
+        playerNameInput = `Player ${playerNumber}`;
+    }
+
+    let sanitizedPlayerName = playerNameInput
+        .replace(/[\x00-\x1F\x7F]/g, ' ') // replace line breaks and control codes with a single space
+        .replace(/%/g, '%%'); // escape % to prevent console format specifiers (%c, %s)
+
+    if (sanitizedPlayerName.length > 30) {
+        sanitizedPlayerName = sanitizedPlayerName.slice(0, 30) + '...';
+    }
+
+    return sanitizedPlayerName;
+}
+
 function handleRepeatedCellInputs(playerOneChoice, playerTwoChoice) {
     playerOneCells.forEach(cell => {
         if (playerOneChoice === cell || playerTwoChoice === cell) {
@@ -75,10 +93,10 @@ function isPatternMatch(playerOneCells, playerTwoCells) {
         areArraysEqual(playerTwoCells, pattern));
 
     if (isPlayerOnePatternMatch === true) {
-        handleGameEnd('hasWinner', playerOneName);
+        handleGameEnd('hasWinner', sanitizePlayerName(playerOneName, '1'));
     }
     else if (isPlayerTwoPatternMatch === true) {
-        handleGameEnd('hasWinner', playerTwoName);
+        handleGameEnd('hasWinner', sanitizePlayerName(playerTwoName, '2'));
     }
     else if (
         rounds > 3 &&
