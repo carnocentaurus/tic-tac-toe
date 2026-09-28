@@ -50,6 +50,8 @@ function handleGameEnd(gameResult, winningPlayer) {
     else if (gameResult === 'tie') {
         console.log('Game over! its a tie!');
     }
+
+    console.log("Type 'reset()' and hit enter to start a new game");
 }
 
 function areArraysEqual(playerCells, pattern) {
@@ -119,4 +121,8 @@ function playGame(playerOneChoice, playerTwoChoice) {
     if (playerOneCells.length >= 3) {
         isPatternMatch(playerOneCells, playerTwoCells);
     }
+}
+
+function reset() {
+    location.reload();
 }
