@@ -120,7 +120,7 @@ function play(playerOneChoice, playerTwoChoice) {
         console.error("Players can't pick the same cell at once!");
         return;
     }
-    if (isNaN(playerOneChoice) || isNaN(playerTwoChoice)) {
+    if (typeof playerOneChoice === 'string' || typeof playerTwoChoice === 'string') {
         console.error('Enter a valid number!');
         return;
     }
