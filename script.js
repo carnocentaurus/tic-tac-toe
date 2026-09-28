@@ -1,3 +1,9 @@
+console.log('TIC TAC TOE (Console Edition)');
+console.log('');
+
+const playerOneName = prompt('Player one name:') || 'Player 1';
+const playerTwoName = prompt('Player two name:') || 'Player 2';
+
 const GAMEBOARD = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
 const PATTERNS = {
@@ -69,10 +75,10 @@ function isPatternMatch(playerOneCells, playerTwoCells) {
         areArraysEqual(playerTwoCells, pattern));
 
     if (isPlayerOnePatternMatch === true) {
-        handleGameEnd('hasWinner', 'Player 1');
+        handleGameEnd('hasWinner', playerOneName);
     }
     else if (isPlayerTwoPatternMatch === true) {
-        handleGameEnd('hasWinner', 'Player 2');
+        handleGameEnd('hasWinner', playerTwoName);
     }
     else if (
         rounds > 3 &&
