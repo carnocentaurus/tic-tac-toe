@@ -55,13 +55,13 @@ function sanitizePlayerName(playerNameInput, playerNumber) {
 function handleRepeatedCellInputs(playerOneChoice, playerTwoChoice) {
     playerOneCells.forEach(cell => {
         if (playerOneChoice === cell || playerTwoChoice === cell) {
-            throw new Error(`Player one already marked the #${cell} cell!`);
+            throw new Error(`${playerOneName} already marked the #${cell} cell!`);
         }
     });
 
     playerTwoCells.forEach(cell => {
         if (playerTwoChoice === cell || playerOneChoice === cell) {
-            throw new Error(`Player two already marked the #${cell} cell!`);
+            throw new Error(`${playerTwoName} already marked the #${cell} cell!`);
         }
     });
 }
