@@ -3,6 +3,7 @@ console.log("Example: Type 'play(4)' to mark the #4 cell");
 console.log('');
 
 const playerOneName = prompt('Player one name:') || 'Player 1';
+const playerTwoName = prompt('Player two name:') || 'Player 2';
 
 const GAMEBOARD = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -20,6 +21,9 @@ const PATTERNS = {
 }
 
 const markedCells = [];
+
+const playerOneCells = [];
+const playerTwoCells = [];
 
 let isGameEnd = false;
 let rounds = 0;
@@ -78,12 +82,18 @@ function areArraysEqual(playerCells, pattern) {
     return playerCells.every(cell => set.has(cell));
 }
 
-function isPatternMatch(markedCells) {
-    const patternMatch = Object.values(PATTERNS).some(pattern => 
-        areArraysEqual(markedCells, pattern));
+function isPatternMatch(playerOneCells, playerTwoCells) {
+    const isPlayerOnePatternMatch = Object.values(PATTERNS).some(pattern => 
+        areArraysEqual(playerOneCells, pattern));
 
-    if (patternMatch === true) {
+    const isPlayerTwoPatternMatch = Object.values(PATTERNS).some(pattern => 
+        areArraysEqual(playerTwoCells, pattern));
+
+    if (isPlayerOnePatternMatch === true) {
         handleGameEnd('hasWinner', sanitizePlayerName(playerOneName, '1'));
+    }
+    else if (isPlayerTwoPatternMatch === true) {
+        handleGameEnd('hasWinner', sanitizePlayerName(playerTwoName, '2'));
     }
     else if (rounds > 6 && patternMatch === false) {
         handleGameEnd('tie', '');
@@ -115,19 +125,21 @@ function play(playerChoice) {
 
     rounds ++;
 
+    markedCells.push(playerChoice);
     const lastIndex = markedCells.length - 1;
+
     if (lastIndex % 2 === 0) {
-        GAMEBOARD[playerChoice] = 'o';
-    }
-    else {
+        playerOneCells.push(playerChoice);
         GAMEBOARD[playerChoice] = 'x';
     }
-
-    markedCells.push(playerChoice);
+    else {
+        playerTwoCells.push(playerChoice);
+        GAMEBOARD[playerChoice] = 'o';
+    }
 
     showGameboard();
 
-    isPatternMatch(markedCells);
+    isPatternMatch(playerOneCells, playerTwoCells);
 }
 
 function reset() {
