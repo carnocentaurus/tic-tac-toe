@@ -115,7 +115,13 @@ function play(playerChoice) {
 
     rounds ++;
 
-    GAMEBOARD[playerChoice] = 'x';
+    const lastIndex = markedCells.length - 1;
+    if (lastIndex % 2 === 0) {
+        GAMEBOARD[playerChoice] = 'o';
+    }
+    else {
+        GAMEBOARD[playerChoice] = 'x';
+    }
 
     markedCells.push(playerChoice);
 
