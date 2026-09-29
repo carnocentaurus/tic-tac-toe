@@ -1,6 +1,5 @@
 console.log('TIC TAC TOE (Console Edition)');
 console.log("Example: Type 'play(4)' to mark the #4 cell");
-console.log('');
 
 const playerOneName = prompt('Player one name:') || 'Player 1';
 const playerTwoName = prompt('Player two name:') || 'Player 2';
@@ -29,12 +28,24 @@ let isGameEnd = false;
 let rounds = 0;
 
 function showGameboard() {
+    console.log('');
     console.log(GAMEBOARD[0], GAMEBOARD[1], GAMEBOARD[2]);
     console.log(GAMEBOARD[3], GAMEBOARD[4], GAMEBOARD[5]);
     console.log(GAMEBOARD[6], GAMEBOARD[7], GAMEBOARD[8]);
 }
 
 showGameboard();
+
+function showPlayerTurn(lastIndex) {
+    if (lastIndex % 2 !== 0 || lastIndex === -1) {
+        console.log(`${playerOneName}'s turn`);
+    }
+    else {
+        console.log(`${playerTwoName}'s turn`);
+    }
+}
+
+showPlayerTurn(markedCells.length - 1);
 
 function sanitizePlayerName(playerNameInput, playerNumber) {
     playerNameInput = playerNameInput.trim();
@@ -64,6 +75,8 @@ function handleRepeatedCellInputs(playerChoice) {
 
 function handleGameEnd(gameResult, winningPlayer) {
     isGameEnd = true;
+
+    console.log('');
 
     if (gameResult === 'hasWinner') {
         console.log(`Game over! ${winningPlayer} wins!`);
@@ -138,6 +151,7 @@ function play(playerChoice) {
     }
 
     showGameboard();
+    showPlayerTurn(lastIndex);
 
     isPatternMatch(playerOneCells, playerTwoCells);
 }
