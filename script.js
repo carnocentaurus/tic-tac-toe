@@ -3,7 +3,6 @@ console.log("Example: Type 'play(4)' to mark the #4 cell");
 console.log('');
 
 const playerOneName = prompt('Player one name:') || 'Player 1';
-const playerTwoName = prompt('Player two name:') || 'Player 2';
 
 const GAMEBOARD = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -20,8 +19,7 @@ const PATTERNS = {
     diagonal2: GAMEBOARD.filter(item => item === 2 || item === 4 || item === 6),
 }
 
-const playerOneCells = [];
-const playerTwoCells = [];
+const markedCells = [];
 
 let isGameEnd = false;
 let rounds = 0;
@@ -52,16 +50,10 @@ function sanitizePlayerName(playerNameInput, playerNumber) {
     return sanitizedPlayerName;
 }
 
-function handleRepeatedCellInputs(playerOneChoice, playerTwoChoice) {
-    playerOneCells.forEach(cell => {
-        if (playerOneChoice === cell || playerTwoChoice === cell) {
+function handleRepeatedCellInputs(playerChoice) {
+    markedCells.forEach(cell => {
+        if (playerChoice === cell) {
             throw new Error(`${playerOneName} already marked the #${cell} cell!`);
-        }
-    });
-
-    playerTwoCells.forEach(cell => {
-        if (playerTwoChoice === cell || playerOneChoice === cell) {
-            throw new Error(`${playerTwoName} already marked the #${cell} cell!`);
         }
     });
 }
@@ -86,69 +78,50 @@ function areArraysEqual(playerCells, pattern) {
     return playerCells.every(cell => set.has(cell));
 }
 
-function isPatternMatch(playerOneCells, playerTwoCells) {
-    const isPlayerOnePatternMatch = Object.values(PATTERNS).some(pattern => 
-        areArraysEqual(playerOneCells, pattern));
+function isPatternMatch(markedCells) {
+    const patternMatch = Object.values(PATTERNS).some(pattern => 
+        areArraysEqual(markedCells, pattern));
 
-    const isPlayerTwoPatternMatch = Object.values(PATTERNS).some(pattern =>
-        areArraysEqual(playerTwoCells, pattern));
-
-    if (isPlayerOnePatternMatch === true) {
+    if (patternMatch === true) {
         handleGameEnd('hasWinner', sanitizePlayerName(playerOneName, '1'));
     }
-    else if (isPlayerTwoPatternMatch === true) {
-        handleGameEnd('hasWinner', sanitizePlayerName(playerTwoName, '2'));
-    }
-    else if (
-        rounds > 3 &&
-        isPlayerOnePatternMatch === false &&
-        isPlayerTwoPatternMatch === false
-    ) {
+    else if (rounds > 6 && patternMatch === false) {
         handleGameEnd('tie', '');
     }
 }
 
-function play(playerOneChoice, playerTwoChoice) {
+function play(playerChoice) {
     if (isGameEnd === true) {
         console.error('Game has already ended!');
         return;
     }
 
-    playerOneChoice = Math.floor(playerOneChoice);
-    playerTwoChoice = Math.floor(playerTwoChoice);
+    playerChoice = Math.floor(playerChoice);
 
-    handleRepeatedCellInputs(playerOneChoice, playerTwoChoice);
+    handleRepeatedCellInputs(playerChoice);
 
-    if (playerOneChoice === playerTwoChoice) {
-        console.error("Players can't pick the same cell at once!");
-        return;
-    }
-    if (typeof playerOneChoice === 'string' || typeof playerTwoChoice === 'string') {
+    if (typeof playerChoice === 'string') {
         console.error('Enter a valid number!');
         return;
     }
-    if (playerOneChoice < 0 || playerTwoChoice < 0) {
+    if (playerChoice < 0) {
         console.error('0 is the minimum input!');
         return;
     }
-    if (playerOneChoice > 8 || playerTwoChoice > 8) {
+    if (playerChoice > 8) {
         console.error('8 is the maximum input!');
         return;
     }
 
     rounds ++;
 
-    GAMEBOARD[playerOneChoice] = 'x';
-    GAMEBOARD[playerTwoChoice] = 'o';
+    GAMEBOARD[playerChoice] = 'x';
 
-    playerOneCells.push(playerOneChoice);
-    playerTwoCells.push(playerTwoChoice);
+    markedCells.push(playerChoice);
 
     showGameboard();
 
-    if (playerOneCells.length >= 3) {
-        isPatternMatch(playerOneCells, playerTwoCells);
-    }
+    isPatternMatch(markedCells);
 }
 
 function reset() {
