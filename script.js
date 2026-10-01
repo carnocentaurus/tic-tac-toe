@@ -11,18 +11,18 @@ console.log("Example: Type 'play(4)' to mark the #4 cell");
 
 const GAMEBOARD = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
-const PATTERNS = {
-    row1: GAMEBOARD.filter(item => item < 3),
-    row2: GAMEBOARD.filter(item => item > 2 && item < 6),
-    row3: GAMEBOARD.filter(item => item > 5),
+const PATTERNS = [
+    GAMEBOARD.filter(item => item < 3),
+    GAMEBOARD.filter(item => item > 2 && item < 6),
+    GAMEBOARD.filter(item => item > 5),
 
-    column1: GAMEBOARD.filter(item => item === 0 || item === 3 || item === 6),
-    column2: GAMEBOARD.filter(item => item === 1 || item === 4 || item === 7),
-    column3: GAMEBOARD.filter(item => item === 2 || item === 5 || item === 8),
+    GAMEBOARD.filter(item => item === 0 || item === 3 || item === 6),
+    GAMEBOARD.filter(item => item === 1 || item === 4 || item === 7),
+    GAMEBOARD.filter(item => item === 2 || item === 5 || item === 8),
 
-    diagonal1: GAMEBOARD.filter(item => item === 0 || item === 4 || item === 8),
-    diagonal2: GAMEBOARD.filter(item => item === 2 || item === 4 || item === 6),
-}
+    GAMEBOARD.filter(item => item === 0 || item === 4 || item === 8),
+    GAMEBOARD.filter(item => item === 2 || item === 4 || item === 6),
+];
 
 const markedCells = [];
 
