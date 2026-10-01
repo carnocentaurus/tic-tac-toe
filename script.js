@@ -93,13 +93,6 @@ function handleGameEnd(gameResult, winningPlayer) {
     console.log("Type 'reset()' and hit enter to start a new game");
 }
 
-function areArraysEqual(playerCells, pattern) {
-    if (playerCells.length !== pattern.length) return;
-    
-    const set = new Set(pattern);
-    return playerCells.every(cell => set.has(cell));
-}
-
 function isPatternMatch(playerOneCells, playerTwoCells) {
     const isPlayerOnePatternMatch = Object.values(PATTERNS).some(pattern => 
         areArraysEqual(playerOneCells, pattern));
@@ -113,9 +106,9 @@ function isPatternMatch(playerOneCells, playerTwoCells) {
     else if (isPlayerTwoPatternMatch === true) {
         handleGameEnd('hasWinner', sanitizePlayerName(playerTwoName, '2'));
     }
-    else if (rounds > 6 && isPlayerOnePatternMatch === false && isPlayerOnePatternMatch === false) {
+    /*else if (rounds > 6 && isPlayerOnePatternMatch === false && isPlayerOnePatternMatch === false) {
         handleGameEnd('tie', '');
-    }
+    }*/
 }
 
 function play(playerChoice) {
