@@ -94,11 +94,14 @@ function handleGameEnd(gameResult, winningPlayer) {
 }
 
 function isPatternMatch(playerOneCells, playerTwoCells) {
-    const isPlayerOnePatternMatch = Object.values(PATTERNS).some(pattern => 
-        areArraysEqual(playerOneCells, pattern));
+    // Check if at least one pattern in PATTERNS has every cell present in playerOneCells
+    const isPlayerOnePatternMatch = PATTERNS.some(pattern => {
+        return pattern.every(cell => playerOneCells.includes(cell));
+    });
 
-    const isPlayerTwoPatternMatch = Object.values(PATTERNS).some(pattern => 
-        areArraysEqual(playerTwoCells, pattern));
+    const isPlayerTwoPatternMatch = PATTERNS.some(pattern => {
+        return pattern.every(cell => playerTwoCells.includes(cell));
+    });
 
     if (isPlayerOnePatternMatch === true) {
         handleGameEnd('hasWinner', sanitizePlayerName(playerOneName, '1'));
