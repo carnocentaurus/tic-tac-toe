@@ -5,8 +5,8 @@ alert(`
     Right click > Inspect > Console tab
 `);
 
-const playerOneName = prompt('Player one name:') || 'Player 1';
-const playerTwoName = prompt('Player two name:') || 'Player 2';
+const playerOneName = sanitizePlayerName(prompt('Player one name:'), 1);
+const playerTwoName = sanitizePlayerName(prompt('Player two name:'), 2);
 
 console.log('TIC TAC TOE (Console Edition)');
 console.log("Example: Type 'play(4)' to mark the #4 cell");
