@@ -55,15 +55,19 @@ function showPlayerTurn(lastIndex) {
 showPlayerTurn(markedCells.length - 1);
 
 function sanitizePlayerName(playerNameInput, playerNumber) {
+    if (playerNameInput === null) {
+        playerNameInput = `Player ${playerNumber}`;
+    }
+
     playerNameInput = playerNameInput.trim();
 
-    if (playerNameInput === null || playerNameInput === '') {
+    if (playerNameInput === '') {
         playerNameInput = `Player ${playerNumber}`;
     }
 
     let sanitizedPlayerName = playerNameInput
-        .replace(/[\x00-\x1F\x7F]/g, ' ') // replace line breaks and control codes with a single space
-        .replace(/%/g, '%%'); // escape % to prevent console format specifiers (%c, %s)
+        .replace(/[\x00-\x1F\x7F]/g, ' ')
+        .replace(/%/g, '%%');
 
     if (sanitizedPlayerName.length > 30) {
         sanitizedPlayerName = sanitizedPlayerName.slice(0, 30) + '...';
