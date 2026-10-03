@@ -1,7 +1,9 @@
-alert(`If your console is closed, open it by typing
+alert(`
+    If your console is closed, open it by typing
     Ctrl + Shift + J
     or
-    Right click > Inspect > Console tab`);
+    Right click > Inspect > Console tab
+`);
 
 const playerOneName = prompt('Player one name:') || 'Player 1';
 const playerTwoName = prompt('Player two name:') || 'Player 2';
