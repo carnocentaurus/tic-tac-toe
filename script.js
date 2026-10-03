@@ -126,7 +126,7 @@ function play(playerChoice) {
         return;
     }
 
-    if (typeof playerChoice !== 'number') {
+    if (typeof playerChoice !== 'number' || Number.isNaN(playerChoice)) {
         console.error('Enter a valid number!');
         return;
     }
