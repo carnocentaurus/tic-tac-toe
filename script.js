@@ -159,9 +159,12 @@ function play(playerChoice) {
     }
 
     showGameboard();
-    showPlayerTurn(lastIndex);
 
     isPatternMatch(playerOneCells, playerTwoCells);
+
+    if (isGameEnd === false) {
+        showPlayerTurn(lastIndex);
+    }
 }
 
 function reset() {
