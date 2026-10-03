@@ -126,14 +126,15 @@ function play(playerChoice) {
         return;
     }
 
+    if (typeof playerChoice !== 'number') {
+        console.error('Enter a valid number!');
+        return;
+    }
+
     playerChoice = Math.floor(playerChoice);
 
     handleRepeatedCellInputs(playerChoice);
 
-    if (typeof playerChoice === 'string') {
-        console.error('Enter a valid number!');
-        return;
-    }
     if (playerChoice < 0) {
         console.error('0 is the minimum input!');
         return;
