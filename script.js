@@ -115,7 +115,7 @@ function isPatternMatch(playerOneCells, playerTwoCells) {
     else if (isPlayerTwoPatternMatch === true) {
         handleGameEnd('hasWinner', sanitizePlayerName(playerTwoName, '2'));
     }
-    else if (rounds >=7 && isPlayerOnePatternMatch === false && isPlayerTwoPatternMatch === false) {
+    else if (rounds >=9 && isPlayerOnePatternMatch === false && isPlayerTwoPatternMatch === false) {
         handleGameEnd('tie', '');
     }
 }
