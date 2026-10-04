@@ -52,6 +52,19 @@ const Gameboard = (() => {
     };
 })();
 
+function Player(name, marker) {
+    const cells = [];
+
+    return {
+        name,
+        marker,
+        cells,
+    }
+}
+
+const playerOne = Player(playerOneName, 'x');
+const playerTwo = Player(playerTwoName, 'o');
+
 const markedCells = [];
 
 const playerOneCells = [];
