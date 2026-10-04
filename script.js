@@ -10,11 +10,12 @@ const playerTwoName = sanitizePlayerName(prompt('Player two name:'), 2);
 
 console.log('TIC TAC TOE (Console Edition)');
 console.log('');
-console.log("Type 'play(number)' to mark a cell.");
+console.log("Type 'play(number)' to mark a cell");
 console.log('Valid cell numbers: 0-8');
 console.log('Example: play(4)');
-console.log('Already marked cells cannot be played again.');
-console.log("Type 'showCurrentTurn()' to see whose turn it is.");
+console.log('Already marked cells cannot be played again');
+console.log("Type 'showCurrentTurn()' to see whose turn it is");
+console.log("Type 'reset()' to reset the game");
 
 const GAMEBOARD = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -110,7 +111,7 @@ function handleGameEnd(gameResult, winningPlayer) {
         console.log(`Game over! ${winningPlayer} wins!`);
     }
     else if (gameResult === 'tie') {
-        console.log('Game over! its a tie!');
+        console.log('Game over! Its a tie!');
     }
 
     console.log("Type 'reset()' and hit enter to start a new game");
