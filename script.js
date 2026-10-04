@@ -5,9 +5,6 @@ alert(`
     Right click > Inspect > Console tab
 `);
 
-const playerOneName = sanitizePlayerName(prompt('Player one name:'), 1);
-const playerTwoName = sanitizePlayerName(prompt('Player two name:'), 2);
-
 console.log('TIC TAC TOE (Console Edition)');
 console.log('');
 console.log("Type 'play(number)' to mark a cell");
@@ -62,8 +59,15 @@ function Player(name, marker) {
     }
 }
 
-const playerOne = Player(playerOneName, 'x');
-const playerTwo = Player(playerTwoName, 'o');
+const playerOne = Player(
+    sanitizePlayerName(prompt('Player one name:'), 1),
+    'x'
+);
+
+const playerTwo = Player(
+    sanitizePlayerName(prompt('Player two name:'), 2),
+    'o'
+);
 
 const markedCells = [];
 
@@ -73,10 +77,10 @@ Gameboard.showGameboard();
 
 function showPlayerTurn(lastIndex) {
     if (lastIndex % 2 !== 0 || lastIndex === -1) {
-        console.log(`${playerOneName}'s turn (Player 1)`);
+        console.log(`${playerOne.name}'s turn (Player 1)`);
     }
     else {
-        console.log(`${playerTwoName}'s turn (Player 2)`);
+        console.log(`${playerTwo.name}'s turn (Player 2)`);
     }
 }
 
@@ -89,10 +93,10 @@ function showCurrentTurn() {
     }
 
     if (markedCells.length % 2 === 0) {
-        console.log(`${playerOneName}'s turn`);
+        console.log(`${playerOne.name}'s turn`);
     }
     else {
-        console.log(`${playerTwoName}'s turn`);
+        console.log(`${playerTwo.name}'s turn`);
     }
 }
 
@@ -151,10 +155,10 @@ function isPatternMatch() {
     });
 
     if (isPlayerOnePatternMatch === true) {
-        handleGameEnd('hasWinner', `Player 1 (${playerOneName})`);
+        handleGameEnd('hasWinner', `Player 1 (${playerOne.name})`);
     }
     else if (isPlayerTwoPatternMatch === true) {
-        handleGameEnd('hasWinner', `Player 2 (${playerTwoName})`);
+        handleGameEnd('hasWinner', `Player 2 (${playerTwo.name})`);
     }
     else if (
         markedCells.length >=9 && 
