@@ -49,10 +49,10 @@ showGameboard();
 
 function showPlayerTurn(lastIndex) {
     if (lastIndex % 2 !== 0 || lastIndex === -1) {
-        console.log(`${playerOneName}'s turn`);
+        console.log(`${playerOneName}'s turn (Player 1)`);
     }
     else {
-        console.log(`${playerTwoName}'s turn`);
+        console.log(`${playerTwoName}'s turn (Player 2)`);
     }
 }
 
