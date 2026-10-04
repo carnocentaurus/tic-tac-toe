@@ -19,20 +19,20 @@ console.log("Type 'reset()' to reset the game");
 
 const Gameboard = {
     board: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-}
 
-const PATTERNS = [
-    Gameboard.board.filter(item => item < 3),
-    Gameboard.board.filter(item => item > 2 && item < 6),
-    Gameboard.board.filter(item => item > 5),
+    patterns: [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
 
-    Gameboard.board.filter(item => item === 0 || item === 3 || item === 6),
-    Gameboard.board.filter(item => item === 1 || item === 4 || item === 7),
-    Gameboard.board.filter(item => item === 2 || item === 5 || item === 8),
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
 
-    Gameboard.board.filter(item => item === 0 || item === 4 || item === 8),
-    Gameboard.board.filter(item => item === 2 || item === 4 || item === 6),
-];
+        [0, 4, 8],
+        [2, 4, 6],
+    ],
+};
 
 const markedCells = [];
 
@@ -121,11 +121,11 @@ function handleGameEnd(gameResult, winningPlayer) {
 
 function isPatternMatch(playerOneCells, playerTwoCells) {
     // Check if at least one pattern in PATTERNS has every cell present in playerOneCells
-    const isPlayerOnePatternMatch = PATTERNS.some(pattern => {
+    const isPlayerOnePatternMatch = Gameboard.patterns.some(pattern => {
         return pattern.every(cell => playerOneCells.includes(cell));
     });
 
-    const isPlayerTwoPatternMatch = PATTERNS.some(pattern => {
+    const isPlayerTwoPatternMatch = Gameboard.patterns.some(pattern => {
         return pattern.every(cell => playerTwoCells.includes(cell));
     });
 
