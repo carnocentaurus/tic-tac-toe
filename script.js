@@ -32,7 +32,6 @@ const playerOneCells = [];
 const playerTwoCells = [];
 
 let isGameEnd = false;
-let rounds = 0;
 
 function showGameboard() {
     console.log('');
@@ -115,7 +114,7 @@ function isPatternMatch(playerOneCells, playerTwoCells) {
     else if (isPlayerTwoPatternMatch === true) {
         handleGameEnd('hasWinner', sanitizePlayerName(playerTwoName, '2'));
     }
-    else if (rounds >=9 && isPlayerOnePatternMatch === false && isPlayerTwoPatternMatch === false) {
+    else if (markedCells.length >=9 && isPlayerOnePatternMatch === false && isPlayerTwoPatternMatch === false) {
         handleGameEnd('tie', '');
     }
 }
@@ -143,8 +142,6 @@ function play(playerChoice) {
         console.error('8 is the maximum input!');
         return;
     }
-
-    rounds ++;
 
     markedCells.push(playerChoice);
     const lastIndex = markedCells.length - 1;
