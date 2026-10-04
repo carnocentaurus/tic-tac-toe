@@ -32,6 +32,13 @@ const Gameboard = {
         [0, 4, 8], // diagonal 1
         [2, 4, 6], // diagonal 2
     ],
+
+    showGameboard() {
+        console.log('');
+        console.log(this.board[0], this.board[1], this.board[2]);
+        console.log(this.board[3], this.board[4], this.board[5]);
+        console.log(this.board[6], this.board[7], this.board[8]);
+    },
 };
 
 const markedCells = [];
@@ -41,14 +48,7 @@ const playerTwoCells = [];
 
 let isGameEnd = false;
 
-function showGameboard() {
-    console.log('');
-    console.log(Gameboard.board[0], Gameboard.board[1], Gameboard.board[2]);
-    console.log(Gameboard.board[3], Gameboard.board[4], Gameboard.board[5]);
-    console.log(Gameboard.board[6], Gameboard.board[7], Gameboard.board[8]);
-}
-
-showGameboard();
+Gameboard.showGameboard();
 
 function showPlayerTurn(lastIndex) {
     if (lastIndex % 2 !== 0 || lastIndex === -1) {
@@ -174,7 +174,7 @@ function play(playerChoice) {
         Gameboard.board[playerChoice] = 'o';
     }
 
-    showGameboard();
+    Gameboard.showGameboard();
 
     isPatternMatch(playerOneCells, playerTwoCells);
 
