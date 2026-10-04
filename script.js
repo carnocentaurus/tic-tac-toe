@@ -67,9 +67,6 @@ const playerTwo = Player(playerTwoName, 'o');
 
 const markedCells = [];
 
-const playerOneCells = [];
-const playerTwoCells = [];
-
 let isGameEnd = false;
 
 Gameboard.showGameboard();
@@ -143,14 +140,14 @@ function handleGameEnd(gameResult, winningPlayer) {
     console.log("Type 'reset()' and hit enter to start a new game");
 }
 
-function isPatternMatch(playerOneCells, playerTwoCells) {
+function isPatternMatch() {
     // Check if at least one pattern in PATTERNS has every cell present in playerOneCells
     const isPlayerOnePatternMatch = Gameboard.patterns.some(pattern => {
-        return pattern.every(cell => playerOneCells.includes(cell));
+        return pattern.every(cell => playerOne.cells.includes(cell));
     });
 
     const isPlayerTwoPatternMatch = Gameboard.patterns.some(pattern => {
-        return pattern.every(cell => playerTwoCells.includes(cell));
+        return pattern.every(cell => playerTwo.cells.includes(cell));
     });
 
     if (isPlayerOnePatternMatch === true) {
@@ -159,7 +156,11 @@ function isPatternMatch(playerOneCells, playerTwoCells) {
     else if (isPlayerTwoPatternMatch === true) {
         handleGameEnd('hasWinner', `Player 2 (${playerTwoName})`);
     }
-    else if (markedCells.length >=9 && isPlayerOnePatternMatch === false && isPlayerTwoPatternMatch === false) {
+    else if (
+        markedCells.length >=9 && 
+        isPlayerOnePatternMatch === false && 
+        isPlayerTwoPatternMatch === false
+    ) {
         handleGameEnd('tie', '');
     }
 }
@@ -190,17 +191,17 @@ function play(playerChoice) {
     const lastIndex = markedCells.length - 1;
 
     if (lastIndex % 2 === 0) {
-        playerOneCells.push(playerChoice);
+        playerOne.cells.push(playerChoice);
         Gameboard.markCell(playerChoice, 'x');
     }
     else {
-        playerTwoCells.push(playerChoice);
+        playerTwo.cells.push(playerChoice);
         Gameboard.markCell(playerChoice, 'o');
     }
 
     Gameboard.showGameboard();
 
-    isPatternMatch(playerOneCells, playerTwoCells);
+    isPatternMatch();
 
     if (isGameEnd === false) {
         showPlayerTurn(lastIndex);
