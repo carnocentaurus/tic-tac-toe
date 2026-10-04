@@ -76,11 +76,9 @@ function sanitizePlayerName(playerNameInput, playerNumber) {
 }
 
 function handleRepeatedCellInputs(playerChoice) {
-    markedCells.forEach(cell => {
-        if (playerChoice === cell) {
-            throw new Error(`Cell #${cell} is already marked!`);
-        }
-    });
+    if (markedCells.includes(playerChoice)) {
+        throw new Error(`Cell #${playerChoice} is already marked!`);
+    }
 }
 
 function handleGameEnd(gameResult, winningPlayer) {
