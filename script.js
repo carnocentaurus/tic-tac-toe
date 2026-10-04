@@ -127,12 +127,10 @@ function play(playerChoice) {
         return;
     }
 
-    if (typeof playerChoice !== 'number' || Number.isNaN(playerChoice)) {
-        console.error('Enter a valid number!');
+    if (typeof playerChoice !== 'number' || Number.isNaN(playerChoice) || !Number.isInteger(playerChoice)) {
+        console.error('Enter a valid whole number from 0 to 8!');
         return;
     }
-
-    playerChoice = Math.floor(playerChoice);
 
     handleRepeatedCellInputs(playerChoice);
 
