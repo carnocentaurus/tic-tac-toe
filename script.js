@@ -17,29 +17,35 @@ console.log('Already marked cells cannot be played again');
 console.log("Type 'showCurrentTurn()' to see whose turn it is");
 console.log("Type 'reset()' to reset the game");
 
-const Gameboard = {
-    board: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+const Gameboard = (() => {
+    const board = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
-    patterns: [
-        [0, 1, 2], // row 1
-        [3, 4, 5], // row 2
-        [6, 7, 8], // row 3
+    const patterns = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
 
-        [0, 3, 6], // column 1
-        [1, 4, 7], // column 2
-        [2, 5, 8], // column 3
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
 
-        [0, 4, 8], // diagonal 1
-        [2, 4, 6], // diagonal 2
-    ],
+        [0, 4, 8],
+        [2, 4, 6],
+    ];
 
-    showGameboard() {
+    function showGameboard() {
         console.log('');
-        console.log(this.board[0], this.board[1], this.board[2]);
-        console.log(this.board[3], this.board[4], this.board[5]);
-        console.log(this.board[6], this.board[7], this.board[8]);
-    },
-};
+        console.log(board[0], board[1], board[2]);
+        console.log(board[3], board[4], board[5]);
+        console.log(board[6], board[7], board[8]);
+    }
+
+    return {
+        board,
+        patterns,
+        showGameboard,
+    };
+})();
 
 const markedCells = [];
 
