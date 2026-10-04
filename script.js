@@ -84,8 +84,7 @@ function sanitizePlayerName(playerNameInput, playerNumber) {
     }
 
     let sanitizedPlayerName = playerNameInput
-        .replace(/[\x00-\x1F\x7F]/g, ' ')
-        .replace(/%/g, '%%');
+        .replace(/[\x00-\x1F\x7F]/g, ' ');
 
     if (sanitizedPlayerName.length > 30) {
         sanitizedPlayerName = sanitizedPlayerName.slice(0, 30) + '...';
