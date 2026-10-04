@@ -85,6 +85,7 @@ function sanitizePlayerName(playerNameInput, playerNumber) {
         sanitizedPlayerName = `Player ${playerNumber}`;
     }
 
+    // equal to const playerNameCharacters = ['N', 'a', 'm', 'e'];
     const playerNameCharacters = [...sanitizedPlayerName];
 
     if (playerNameCharacters.length > 30) {
@@ -126,10 +127,10 @@ function isPatternMatch(playerOneCells, playerTwoCells) {
     });
 
     if (isPlayerOnePatternMatch === true) {
-        handleGameEnd('hasWinner', playerOneName);
+        handleGameEnd('hasWinner', `Player 1 (${playerOneName})`);
     }
     else if (isPlayerTwoPatternMatch === true) {
-        handleGameEnd('hasWinner', playerTwoName);
+        handleGameEnd('hasWinner', `Player 2 (${playerOneName})`);
     }
     else if (markedCells.length >=9 && isPlayerOnePatternMatch === false && isPlayerTwoPatternMatch === false) {
         handleGameEnd('tie', '');
