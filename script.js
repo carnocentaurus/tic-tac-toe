@@ -17,19 +17,21 @@ console.log('Already marked cells cannot be played again');
 console.log("Type 'showCurrentTurn()' to see whose turn it is");
 console.log("Type 'reset()' to reset the game");
 
-const GAMEBOARD = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+const Gameboard = {
+    board: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+}
 
 const PATTERNS = [
-    GAMEBOARD.filter(item => item < 3),
-    GAMEBOARD.filter(item => item > 2 && item < 6),
-    GAMEBOARD.filter(item => item > 5),
+    Gameboard.board.filter(item => item < 3),
+    Gameboard.board.filter(item => item > 2 && item < 6),
+    Gameboard.board.filter(item => item > 5),
 
-    GAMEBOARD.filter(item => item === 0 || item === 3 || item === 6),
-    GAMEBOARD.filter(item => item === 1 || item === 4 || item === 7),
-    GAMEBOARD.filter(item => item === 2 || item === 5 || item === 8),
+    Gameboard.board.filter(item => item === 0 || item === 3 || item === 6),
+    Gameboard.board.filter(item => item === 1 || item === 4 || item === 7),
+    Gameboard.board.filter(item => item === 2 || item === 5 || item === 8),
 
-    GAMEBOARD.filter(item => item === 0 || item === 4 || item === 8),
-    GAMEBOARD.filter(item => item === 2 || item === 4 || item === 6),
+    Gameboard.board.filter(item => item === 0 || item === 4 || item === 8),
+    Gameboard.board.filter(item => item === 2 || item === 4 || item === 6),
 ];
 
 const markedCells = [];
@@ -41,9 +43,9 @@ let isGameEnd = false;
 
 function showGameboard() {
     console.log('');
-    console.log(GAMEBOARD[0], GAMEBOARD[1], GAMEBOARD[2]);
-    console.log(GAMEBOARD[3], GAMEBOARD[4], GAMEBOARD[5]);
-    console.log(GAMEBOARD[6], GAMEBOARD[7], GAMEBOARD[8]);
+    console.log(Gameboard.board[0], Gameboard.board[1], Gameboard.board[2]);
+    console.log(Gameboard.board[3], Gameboard.board[4], Gameboard.board[5]);
+    console.log(Gameboard.board[6], Gameboard.board[7], Gameboard.board[8]);
 }
 
 showGameboard();
@@ -165,11 +167,11 @@ function play(playerChoice) {
 
     if (lastIndex % 2 === 0) {
         playerOneCells.push(playerChoice);
-        GAMEBOARD[playerChoice] = 'x';
+        Gameboard.board[playerChoice] = 'x';
     }
     else {
         playerTwoCells.push(playerChoice);
-        GAMEBOARD[playerChoice] = 'o';
+        Gameboard.board[playerChoice] = 'o';
     }
 
     showGameboard();
