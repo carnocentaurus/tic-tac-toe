@@ -126,10 +126,10 @@ function isPatternMatch(playerOneCells, playerTwoCells) {
     });
 
     if (isPlayerOnePatternMatch === true) {
-        handleGameEnd('hasWinner', sanitizePlayerName(playerOneName, '1'));
+        handleGameEnd('hasWinner', playerOneName);
     }
     else if (isPlayerTwoPatternMatch === true) {
-        handleGameEnd('hasWinner', sanitizePlayerName(playerTwoName, '2'));
+        handleGameEnd('hasWinner', playerTwoName);
     }
     else if (markedCells.length >=9 && isPlayerOnePatternMatch === false && isPlayerTwoPatternMatch === false) {
         handleGameEnd('tie', '');
