@@ -78,15 +78,17 @@ function sanitizePlayerName(playerNameInput, playerNumber) {
     }
 
     let sanitizedPlayerName = playerNameInput
-        .replace(/[\x00-\x1F\x7F]/g, ' ')
+        .replace(/[\x00-\x1F\x7F\u200B-\u200D\u2060\uFEFF]/g, ' ')
         .trim();
 
     if (sanitizedPlayerName === '') {
         sanitizedPlayerName = `Player ${playerNumber}`;
     }
 
-    if (sanitizedPlayerName.length > 30) {
-        sanitizedPlayerName = sanitizedPlayerName.slice(0, 30) + '...';
+    const playerNameCharacters = [...sanitizedPlayerName];
+
+    if (playerNameCharacters.length > 30) {
+        sanitizedPlayerName = playerNameCharacters.slice(0, 30).join('') + '...';
     }
 
     return sanitizedPlayerName;
