@@ -77,14 +77,13 @@ function sanitizePlayerName(playerNameInput, playerNumber) {
         playerNameInput = `Player ${playerNumber}`;
     }
 
-    playerNameInput = playerNameInput.trim();
-
-    if (playerNameInput === '') {
-        playerNameInput = `Player ${playerNumber}`;
-    }
-
     let sanitizedPlayerName = playerNameInput
-        .replace(/[\x00-\x1F\x7F]/g, ' ');
+        .replace(/[\x00-\x1F\x7F]/g, ' ')
+        .trim();
+
+    if (sanitizedPlayerName === '') {
+        sanitizedPlayerName = `Player ${playerNumber}`;
+    }
 
     if (sanitizedPlayerName.length > 30) {
         sanitizedPlayerName = sanitizedPlayerName.slice(0, 30) + '...';
