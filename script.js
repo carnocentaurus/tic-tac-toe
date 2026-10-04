@@ -1,5 +1,5 @@
 alert(`
-    If your console is closed, open it by typing
+    If your console is closed, open it by typing:
     Ctrl + Shift + J
     or
     Right click > Inspect > Console tab
@@ -9,7 +9,11 @@ const playerOneName = sanitizePlayerName(prompt('Player one name:'), 1);
 const playerTwoName = sanitizePlayerName(prompt('Player two name:'), 2);
 
 console.log('TIC TAC TOE (Console Edition)');
-console.log("Example: Type 'play(4)' to mark the #4 cell");
+console.log('');
+console.log("Type 'play(number)' to mark a cell.");
+console.log('Valid cell numbers: 0-8');
+console.log('Example: play(4)');
+console.log('Already marked cells cannot be played again.');
 
 const GAMEBOARD = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
