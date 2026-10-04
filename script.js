@@ -14,6 +14,7 @@ console.log("Type 'play(number)' to mark a cell.");
 console.log('Valid cell numbers: 0-8');
 console.log('Example: play(4)');
 console.log('Already marked cells cannot be played again.');
+console.log("Type 'showCurrentTurn()' to see whose turn it is.");
 
 const GAMEBOARD = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -56,6 +57,20 @@ function showPlayerTurn(lastIndex) {
 }
 
 showPlayerTurn(markedCells.length - 1);
+
+function showCurrentTurn() {
+    if (isGameEnd === true) {
+        console.log('The game has already ended!');
+        return;
+    }
+
+    if (markedCells.length % 2 === 0) {
+        console.log(`${playerOneName}'s turn`);
+    }
+    else {
+        console.log(`${playerTwoName}'s turn`);
+    }
+}
 
 function sanitizePlayerName(playerNameInput, playerNumber) {
     if (playerNameInput === null) {
