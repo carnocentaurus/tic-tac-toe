@@ -40,10 +40,15 @@ const Gameboard = (() => {
         console.log(board[6], board[7], board[8]);
     }
 
+    function markCell(cell, marker) {
+        board[cell] = marker;
+    }
+
     return {
         board,
         patterns,
         showGameboard,
+        markCell,
     };
 })();
 
@@ -173,11 +178,11 @@ function play(playerChoice) {
 
     if (lastIndex % 2 === 0) {
         playerOneCells.push(playerChoice);
-        Gameboard.board[playerChoice] = 'x';
+        Gameboard.markCell(playerChoice, 'x');
     }
     else {
         playerTwoCells.push(playerChoice);
-        Gameboard.board[playerChoice] = 'o';
+        Gameboard.markCell(playerChoice, 'o');
     }
 
     Gameboard.showGameboard();
