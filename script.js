@@ -61,7 +61,7 @@ const GameController = (() => {
     }
 
     function handleGameEnd(gameResult, winningPlayer) {
-        GameController.endGame();
+        endGame();
 
         console.log('');
 
@@ -103,6 +103,15 @@ const GameController = (() => {
             isPlayerTwoPatternMatch === false
         ) {
             handleGameEnd('tie', '');
+        }
+    }
+
+    function showPlayerTurn(lastIndex) {
+        if (lastIndex % 2 !== 0 || lastIndex === -1) {
+            console.log(`${playerOne.name}'s turn (Player 1)`);
+        }
+        else {
+            console.log(`${playerTwo.name}'s turn (Player 2)`);
         }
     }
 
@@ -153,10 +162,16 @@ const GameController = (() => {
         }
     }
 
+    function startGame() {
+        Gameboard.showGameboard();
+        showPlayerTurn(-1);
+    }
+
     return {
         getGameEnd,
         endGame,
         play,
+        startGame,
     };
 })();
 
@@ -180,18 +195,7 @@ const playerTwo = Player(
     'o'
 );
 
-Gameboard.showGameboard();
-
-function showPlayerTurn(lastIndex) {
-    if (lastIndex % 2 !== 0 || lastIndex === -1) {
-        console.log(`${playerOne.name}'s turn (Player 1)`);
-    }
-    else {
-        console.log(`${playerTwo.name}'s turn (Player 2)`);
-    }
-}
-
-showPlayerTurn(playerOne.cells.length + playerTwo.cells.length - 1);
+GameController.startGame();
 
 function showCurrentTurn() {
     if (GameController.getGameEnd() === true) {
