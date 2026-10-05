@@ -97,7 +97,7 @@ const GameController = (() => {
             handleGameEnd('hasWinner', `Player 2 (${playerTwo.name})`);
         }
         else if (
-            playerOne.cells.length + playerTwo.cells.length >= 9 && 
+            playerOne.getCellCount() + playerTwo.getCellCount() >= 9 && 
             isPlayerOnePatternMatch === false && 
             isPlayerTwoPatternMatch === false
         ) {
@@ -120,7 +120,7 @@ const GameController = (() => {
             return;
         }
 
-        if ((playerOne.cells.length + playerTwo.cells.length) % 2 === 0) {
+        if ((playerOne.getCellCount() + playerTwo.getCellCount()) % 2 === 0) {
             console.log(`${playerOne.name}'s turn`);
         }
         else {
@@ -154,7 +154,7 @@ const GameController = (() => {
             return;
         }
 
-        const totalMoves = playerOne.cells.length + playerTwo.cells.length;
+        const totalMoves = playerOne.getCellCount() + playerTwo.getCellCount();
         const lastIndex = totalMoves;
 
         if (lastIndex % 2 === 0) {
@@ -228,11 +228,16 @@ function Player(nameInput, playerNumber, marker) {
         return cells.includes(cell);
     }
 
+    function getCellCount() {
+        return cells.length;
+    }
+
     return {
         name,
         marker,
         addCell,
         hasCell,
+        getCellCount,
     };
 }
 
