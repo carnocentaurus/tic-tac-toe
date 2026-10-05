@@ -46,7 +46,6 @@ const Gameboard = (() => {
     }
 
     return {
-        board,
         patterns,
         showGameboard,
         markCell,
