@@ -7,9 +7,9 @@ alert(`
 
 console.log('TIC TAC TOE (Console Edition)');
 console.log('');
-console.log("Type 'play(number)' to mark a cell");
+console.log("Type 'GameController.play(number)' to mark a cell");
 console.log('Valid cell numbers: 0-8');
-console.log('Example: play(4)');
+console.log('Example: GameController.play(4)');
 console.log('Already marked cells cannot be played again');
 console.log("Type 'showCurrentTurn()' to see whose turn it is");
 console.log("Type 'reset()' to reset the game");
@@ -60,9 +60,57 @@ const GameController = (() => {
         isGameEnd = true;
     }
 
+    function play(playerChoice) {
+        if (isGameEnd === true) {
+            console.error('Game has already ended!');
+            return;
+        }
+
+        if (
+            typeof playerChoice !== 'number' || 
+            Number.isNaN(playerChoice) || 
+            !Number.isInteger(playerChoice)
+        ) {
+            console.error('Enter a valid whole number from 0 to 8!');
+            return;
+        }
+
+        handleRepeatedCellInputs(playerChoice);
+
+        if (playerChoice < 0) {
+            console.error('0 is the minimum input!');
+            return;
+        }
+        if (playerChoice > 8) {
+            console.error('8 is the maximum input!');
+            return;
+        }
+
+        const totalMoves = playerOne.cells.length + playerTwo.cells.length;
+        const lastIndex = totalMoves;
+
+        if (lastIndex % 2 === 0) {
+            playerOne.cells.push(playerChoice);
+            Gameboard.markCell(playerChoice, playerOne.marker);
+        }
+        else {
+            playerTwo.cells.push(playerChoice);
+            Gameboard.markCell(playerChoice, playerTwo.marker);
+        }
+
+        Gameboard.showGameboard();
+
+        isPatternMatch();
+
+        if (isGameEnd === false) {
+            showPlayerTurn(lastIndex);
+        }
+    }
+
     return {
         getGameEnd,
         endGame,
+        play,
     };
 })();
 
@@ -179,49 +227,6 @@ function isPatternMatch() {
         isPlayerTwoPatternMatch === false
     ) {
         handleGameEnd('tie', '');
-    }
-}
-
-function play(playerChoice) {
-    if (GameController.getGameEnd() === true) {
-        console.error('Game has already ended!');
-        return;
-    }
-
-    if (typeof playerChoice !== 'number' || Number.isNaN(playerChoice) || !Number.isInteger(playerChoice)) {
-        console.error('Enter a valid whole number from 0 to 8!');
-        return;
-    }
-
-    handleRepeatedCellInputs(playerChoice);
-
-    if (playerChoice < 0) {
-        console.error('0 is the minimum input!');
-        return;
-    }
-    if (playerChoice > 8) {
-        console.error('8 is the maximum input!');
-        return;
-    }
-
-    const totalMoves = playerOne.cells.length + playerTwo.cells.length;
-    const lastIndex = totalMoves;
-
-    if (lastIndex % 2 === 0) {
-        playerOne.cells.push(playerChoice);
-        Gameboard.markCell(playerChoice, playerOne.marker);
-    }
-    else {
-        playerTwo.cells.push(playerChoice);
-        Gameboard.markCell(playerChoice, playerTwo.marker);
-    }
-
-    Gameboard.showGameboard();
-
-    isPatternMatch();
-
-    if (GameController.getGameEnd() === false) {
-        showPlayerTurn(lastIndex);
     }
 }
 
