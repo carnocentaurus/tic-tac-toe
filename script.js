@@ -49,6 +49,23 @@ const Gameboard = (() => {
     };
 })();
 
+const GameController = (() => {
+    let isGameEnd = false;
+
+    function getGameEnd() {
+        return isGameEnd;
+    }
+
+    function endGame() {
+        isGameEnd = true;
+    }
+
+    return {
+        getGameEnd,
+        endGame,
+    };
+})();
+
 function Player(name, marker) {
     const cells = [];
 
@@ -69,8 +86,6 @@ const playerTwo = Player(
     'o'
 );
 
-let isGameEnd = false;
-
 Gameboard.showGameboard();
 
 function showPlayerTurn(lastIndex) {
@@ -85,7 +100,7 @@ function showPlayerTurn(lastIndex) {
 showPlayerTurn(playerOne.cells.length + playerTwo.cells.length - 1);
 
 function showCurrentTurn() {
-    if (isGameEnd === true) {
+    if (GameController.getGameEnd() === true) {
         console.log('The game has already ended!');
         return;
     }
@@ -128,7 +143,7 @@ function handleRepeatedCellInputs(playerChoice) {
 }
 
 function handleGameEnd(gameResult, winningPlayer) {
-    isGameEnd = true;
+    GameController.endGame();
 
     console.log('');
 
@@ -168,7 +183,7 @@ function isPatternMatch() {
 }
 
 function play(playerChoice) {
-    if (isGameEnd === true) {
+    if (GameController.getGameEnd() === true) {
         console.error('Game has already ended!');
         return;
     }
@@ -205,7 +220,7 @@ function play(playerChoice) {
 
     isPatternMatch();
 
-    if (isGameEnd === false) {
+    if (GameController.getGameEnd() === false) {
         showPlayerTurn(lastIndex);
     }
 }
