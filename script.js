@@ -41,14 +41,16 @@ const Gameboard = (() => {
         board[cell] = marker;
     }
 
-    function getPatterns() {
-        return patterns;
+    function hasWinningPattern(playerCells) {
+        return patterns.some(pattern => {
+            return pattern.every(cell => playerCells.includes(cell));
+        });
     }
 
     return {
         showGameboard,
         markCell,
-        getPatterns,
+        hasWinningPattern,
     };
 })();
 
@@ -85,14 +87,8 @@ const GameController = (() => {
     }
 
     function isPatternMatch() {
-        // Check if at least one pattern in PATTERNS has every cell present in playerOneCells
-        const isPlayerOnePatternMatch = Gameboard.getPatterns().some(pattern => {
-            return pattern.every(cell => playerOne.cells.includes(cell));
-        });
-
-        const isPlayerTwoPatternMatch = Gameboard.getPatterns().some(pattern => {
-            return pattern.every(cell => playerTwo.cells.includes(cell));
-        });
+        const isPlayerOnePatternMatch = Gameboard.hasWinningPattern(playerOne.cells);
+        const isPlayerTwoPatternMatch = Gameboard.hasWinningPattern(playerTwo.cells);
 
         if (isPlayerOnePatternMatch === true) {
             handleGameEnd('hasWinner', `Player 1 (${playerOne.name})`);
