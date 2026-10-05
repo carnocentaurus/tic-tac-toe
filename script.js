@@ -115,6 +115,20 @@ const GameController = (() => {
         }
     }
 
+    function showCurrentTurn() {
+        if (isGameEnd === true) {
+            console.log('The game has already ended!');
+            return;
+        }
+
+        if ((playerOne.cells.length + playerTwo.cells.length) % 2 === 0) {
+            console.log(`${playerOne.name}'s turn`);
+        }
+        else {
+            console.log(`${playerTwo.name}'s turn`);
+        }
+    }
+
     function play(playerChoice) {
         if (isGameEnd === true) {
             console.error('Game has already ended!');
@@ -170,6 +184,7 @@ const GameController = (() => {
     return {
         getGameEnd,
         endGame,
+        showCurrentTurn,
         play,
         startGame,
     };
@@ -196,20 +211,6 @@ const playerTwo = Player(
 );
 
 GameController.startGame();
-
-function showCurrentTurn() {
-    if (GameController.getGameEnd() === true) {
-        console.log('The game has already ended!');
-        return;
-    }
-
-    if ((playerOne.cells.length + playerTwo.cells.length) % 2 === 0) {
-        console.log(`${playerOne.name}'s turn`);
-    }
-    else {
-        console.log(`${playerTwo.name}'s turn`);
-    }
-}
 
 function sanitizePlayerName(playerNameInput, playerNumber) {
     if (playerNameInput === null) {
