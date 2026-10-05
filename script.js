@@ -60,6 +60,21 @@ const GameController = (() => {
         isGameEnd = true;
     }
 
+    function handleGameEnd(gameResult, winningPlayer) {
+        GameController.endGame();
+
+        console.log('');
+
+        if (gameResult === 'hasWinner') {
+            console.log(`Game over! ${winningPlayer} wins!`);
+        }
+        else if (gameResult === 'tie') {
+            console.log('Game over! Its a tie!');
+        }
+
+        console.log("Type 'reset()' and hit enter to start a new game");
+    }
+
     function handleRepeatedCellInputs(playerChoice) {
         if (playerOne.cells.includes(playerChoice) || playerTwo.cells.includes(playerChoice)) {
             throw new Error(`Cell #${playerChoice} is already marked!`);
@@ -213,21 +228,6 @@ function sanitizePlayerName(playerNameInput, playerNumber) {
     }
 
     return sanitizedPlayerName;
-}
-
-function handleGameEnd(gameResult, winningPlayer) {
-    GameController.endGame();
-
-    console.log('');
-
-    if (gameResult === 'hasWinner') {
-        console.log(`Game over! ${winningPlayer} wins!`);
-    }
-    else if (gameResult === 'tie') {
-        console.log('Game over! Its a tie!');
-    }
-
-    console.log("Type 'reset()' and hit enter to start a new game");
 }
 
 function reset() {
