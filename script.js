@@ -12,7 +12,7 @@ console.log('Valid cell numbers: 0-8');
 console.log('Example: GameController.play(4)');
 console.log('Already marked cells cannot be played again');
 console.log("Type 'GameController.showCurrentTurn()' to see whose turn it is");
-console.log("Type 'reset()' to reset the game");
+console.log("Type 'GameController.reset()' to reset the game");
 
 const Gameboard = (() => {
     const board = [0, 1, 2, 3, 4, 5, 6, 7, 8];
@@ -181,17 +181,22 @@ const GameController = (() => {
         showPlayerTurn(-1);
     }
 
+    function reset() {
+        location.reload();
+    }
+
     return {
         getGameEnd,
         endGame,
         showCurrentTurn,
         play,
         startGame,
+        reset,
     };
 })();
 
 function Player(nameInput, playerNumber, marker) {
-    
+
     function sanitizePlayerName(playerNameInput, playerNumber) {
         if (playerNameInput === null) {
             playerNameInput = `Player ${playerNumber}`;
@@ -238,7 +243,3 @@ const playerTwo = Player(
 );
 
 GameController.startGame();
-
-function reset() {
-    location.reload();
-}
