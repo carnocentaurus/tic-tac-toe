@@ -191,6 +191,30 @@ const GameController = (() => {
 })();
 
 function Player(nameInput, playerNumber, marker) {
+    
+    function sanitizePlayerName(playerNameInput, playerNumber) {
+        if (playerNameInput === null) {
+            playerNameInput = `Player ${playerNumber}`;
+        }
+
+        let sanitizedPlayerName = playerNameInput
+            .replace(/[\x00-\x1F\x7F\u200B-\u200D\u2060\uFEFF]/g, ' ')
+            .trim();
+
+        if (sanitizedPlayerName === '') {
+            sanitizedPlayerName = `Player ${playerNumber}`;
+        }
+
+        // equal to const playerNameCharacters = ['N', 'a', 'm', 'e'];
+        const playerNameCharacters = [...sanitizedPlayerName];
+
+        if (playerNameCharacters.length > 30) {
+            sanitizedPlayerName = playerNameCharacters.slice(0, 30).join('') + '...';
+        }
+
+        return sanitizedPlayerName;
+    }
+
     const name = sanitizePlayerName(nameInput, playerNumber);
     const cells = [];
 
@@ -214,29 +238,6 @@ const playerTwo = Player(
 );
 
 GameController.startGame();
-
-function sanitizePlayerName(playerNameInput, playerNumber) {
-    if (playerNameInput === null) {
-        playerNameInput = `Player ${playerNumber}`;
-    }
-
-    let sanitizedPlayerName = playerNameInput
-        .replace(/[\x00-\x1F\x7F\u200B-\u200D\u2060\uFEFF]/g, ' ')
-        .trim();
-
-    if (sanitizedPlayerName === '') {
-        sanitizedPlayerName = `Player ${playerNumber}`;
-    }
-
-    // equal to const playerNameCharacters = ['N', 'a', 'm', 'e'];
-    const playerNameCharacters = [...sanitizedPlayerName];
-
-    if (playerNameCharacters.length > 30) {
-        sanitizedPlayerName = playerNameCharacters.slice(0, 30).join('') + '...';
-    }
-
-    return sanitizedPlayerName;
-}
 
 function reset() {
     location.reload();
