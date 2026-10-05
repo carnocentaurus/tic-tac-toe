@@ -60,6 +60,12 @@ const GameController = (() => {
         isGameEnd = true;
     }
 
+    function handleRepeatedCellInputs(playerChoice) {
+        if (playerOne.cells.includes(playerChoice) || playerTwo.cells.includes(playerChoice)) {
+            throw new Error(`Cell #${playerChoice} is already marked!`);
+        }
+    }
+
     function play(playerChoice) {
         if (isGameEnd === true) {
             console.error('Game has already ended!');
@@ -182,12 +188,6 @@ function sanitizePlayerName(playerNameInput, playerNumber) {
     }
 
     return sanitizedPlayerName;
-}
-
-function handleRepeatedCellInputs(playerChoice) {
-    if (playerOne.cells.includes(playerChoice) || playerTwo.cells.includes(playerChoice)) {
-        throw new Error(`Cell #${playerChoice} is already marked!`);
-    }
 }
 
 function handleGameEnd(gameResult, winningPlayer) {
