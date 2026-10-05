@@ -81,7 +81,7 @@ const GameController = (() => {
     }
 
     function handleRepeatedCellInputs(playerChoice) {
-        if (playerOne.cells.includes(playerChoice) || playerTwo.cells.includes(playerChoice)) {
+        if (playerOne.hasCell(playerChoice) || playerTwo.hasCell(playerChoice)) {
             throw new Error(`Cell #${playerChoice} is already marked!`);
         }
     }
@@ -224,10 +224,15 @@ function Player(nameInput, playerNumber, marker) {
         cells.push(cell);
     }
 
+    function hasCell(cell) {
+        return cells.includes(cell);
+    }
+
     return {
         name,
         marker,
         addCell,
+        hasCell,
     };
 }
 
