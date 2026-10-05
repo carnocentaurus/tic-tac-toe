@@ -186,8 +186,6 @@ const GameController = (() => {
     }
 
     return {
-        getGameEnd,
-        endGame,
         showCurrentTurn,
         play,
         startGame,
