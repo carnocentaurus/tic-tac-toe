@@ -66,6 +66,31 @@ const GameController = (() => {
         }
     }
 
+    function isPatternMatch() {
+        // Check if at least one pattern in PATTERNS has every cell present in playerOneCells
+        const isPlayerOnePatternMatch = Gameboard.patterns.some(pattern => {
+            return pattern.every(cell => playerOne.cells.includes(cell));
+        });
+
+        const isPlayerTwoPatternMatch = Gameboard.patterns.some(pattern => {
+            return pattern.every(cell => playerTwo.cells.includes(cell));
+        });
+
+        if (isPlayerOnePatternMatch === true) {
+            handleGameEnd('hasWinner', `Player 1 (${playerOne.name})`);
+        }
+        else if (isPlayerTwoPatternMatch === true) {
+            handleGameEnd('hasWinner', `Player 2 (${playerTwo.name})`);
+        }
+        else if (
+            playerOne.cells.length + playerTwo.cells.length >= 9 && 
+            isPlayerOnePatternMatch === false && 
+            isPlayerTwoPatternMatch === false
+        ) {
+            handleGameEnd('tie', '');
+        }
+    }
+
     function play(playerChoice) {
         if (isGameEnd === true) {
             console.error('Game has already ended!');
@@ -203,31 +228,6 @@ function handleGameEnd(gameResult, winningPlayer) {
     }
 
     console.log("Type 'reset()' and hit enter to start a new game");
-}
-
-function isPatternMatch() {
-    // Check if at least one pattern in PATTERNS has every cell present in playerOneCells
-    const isPlayerOnePatternMatch = Gameboard.patterns.some(pattern => {
-        return pattern.every(cell => playerOne.cells.includes(cell));
-    });
-
-    const isPlayerTwoPatternMatch = Gameboard.patterns.some(pattern => {
-        return pattern.every(cell => playerTwo.cells.includes(cell));
-    });
-
-    if (isPlayerOnePatternMatch === true) {
-        handleGameEnd('hasWinner', `Player 1 (${playerOne.name})`);
-    }
-    else if (isPlayerTwoPatternMatch === true) {
-        handleGameEnd('hasWinner', `Player 2 (${playerTwo.name})`);
-    }
-    else if (
-        playerOne.cells.length + playerTwo.cells.length >= 9 && 
-        isPlayerOnePatternMatch === false && 
-        isPlayerTwoPatternMatch === false
-    ) {
-        handleGameEnd('tie', '');
-    }
 }
 
 function reset() {
