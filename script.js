@@ -220,10 +220,14 @@ function Player(nameInput, playerNumber, marker) {
     const name = sanitizePlayerName(nameInput, playerNumber);
     const cells = [];
 
+    function addCell(cell) {
+        cells.push(cell);
+    }
+
     return {
         name,
         marker,
-        cells,
+        addCell,
     };
 }
 
