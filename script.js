@@ -41,11 +41,16 @@ const Gameboard = (() => {
         board[cell] = marker;
     }
 
+    function getBoard() {
+        return board;
+    }
+
     return {
         board,
         patterns,
         showGameboard,
         markCell,
+        getBoard,
     };
 })();
 
