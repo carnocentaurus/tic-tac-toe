@@ -69,8 +69,6 @@ const playerTwo = Player(
     'o'
 );
 
-const markedCells = [];
-
 let isGameEnd = false;
 
 Gameboard.showGameboard();
@@ -84,7 +82,7 @@ function showPlayerTurn(lastIndex) {
     }
 }
 
-showPlayerTurn(markedCells.length - 1);
+showPlayerTurn(playerOne.cells.length + playerTwo.cells.length - 1);
 
 function showCurrentTurn() {
     if (isGameEnd === true) {
@@ -92,7 +90,7 @@ function showCurrentTurn() {
         return;
     }
 
-    if (markedCells.length % 2 === 0) {
+    if ((playerOne.cells.length + playerTwo.cells.length) % 2 === 0) {
         console.log(`${playerOne.name}'s turn`);
     }
     else {
@@ -124,7 +122,7 @@ function sanitizePlayerName(playerNameInput, playerNumber) {
 }
 
 function handleRepeatedCellInputs(playerChoice) {
-    if (markedCells.includes(playerChoice)) {
+    if (playerOne.cells.includes(playerChoice) || playerTwo.cells.includes(playerChoice)) {
         throw new Error(`Cell #${playerChoice} is already marked!`);
     }
 }
@@ -161,7 +159,7 @@ function isPatternMatch() {
         handleGameEnd('hasWinner', `Player 2 (${playerTwo.name})`);
     }
     else if (
-        markedCells.length >=9 && 
+        playerOne.cells.length + playerTwo.cells.length >= 9 && 
         isPlayerOnePatternMatch === false && 
         isPlayerTwoPatternMatch === false
     ) {
@@ -191,16 +189,16 @@ function play(playerChoice) {
         return;
     }
 
-    markedCells.push(playerChoice);
-    const lastIndex = markedCells.length - 1;
+    const totalMoves = playerOne.cells.length + playerTwo.cells.length;
+    const lastIndex = totalMoves;
 
     if (lastIndex % 2 === 0) {
         playerOne.cells.push(playerChoice);
-        Gameboard.markCell(playerChoice, 'x');
+        Gameboard.markCell(playerChoice, playerOne.marker);
     }
     else {
         playerTwo.cells.push(playerChoice);
-        Gameboard.markCell(playerChoice, 'o');
+        Gameboard.markCell(playerChoice, playerTwo.marker);
     }
 
     Gameboard.showGameboard();
