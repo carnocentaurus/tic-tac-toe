@@ -45,11 +45,16 @@ const Gameboard = (() => {
         return board;
     }
 
+    function getPatterns() {
+        return patterns;
+    }
+
     return {
         patterns,
         showGameboard,
         markCell,
         getBoard,
+        getPatterns,
     };
 })();
 
@@ -87,11 +92,11 @@ const GameController = (() => {
 
     function isPatternMatch() {
         // Check if at least one pattern in PATTERNS has every cell present in playerOneCells
-        const isPlayerOnePatternMatch = Gameboard.patterns.some(pattern => {
+        const isPlayerOnePatternMatch = Gameboard.getPatterns().some(pattern => {
             return pattern.every(cell => playerOne.cells.includes(cell));
         });
 
-        const isPlayerTwoPatternMatch = Gameboard.patterns.some(pattern => {
+        const isPlayerTwoPatternMatch = Gameboard.getPatterns().some(pattern => {
             return pattern.every(cell => playerTwo.cells.includes(cell));
         });
 
