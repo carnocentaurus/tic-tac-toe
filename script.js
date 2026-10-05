@@ -158,11 +158,11 @@ const GameController = (() => {
         const lastIndex = totalMoves;
 
         if (lastIndex % 2 === 0) {
-            playerOne.cells.push(playerChoice);
+            playerOne.addCell(playerChoice);
             Gameboard.markCell(playerChoice, playerOne.marker);
         }
         else {
-            playerTwo.cells.push(playerChoice);
+            playerTwo.addCell(playerChoice);
             Gameboard.markCell(playerChoice, playerTwo.marker);
         }
 
