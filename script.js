@@ -50,7 +50,6 @@ const Gameboard = (() => {
     }
 
     return {
-        patterns,
         showGameboard,
         markCell,
         getBoard,
