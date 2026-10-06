@@ -107,11 +107,13 @@ const GameController = (() => {
             return;
         }
 
-        if ((playerOne.getCellCount() + playerTwo.getCellCount()) % 2 === 0) {
-            console.log(`${playerOne.name}'s turn`);
+        const totalMoves = playerOne.getCellCount() + playerTwo.getCellCount();
+
+        if (totalMoves % 2 === 0) {
+            console.log(`${playerOne.name}'s turn (Player 1)`);
         }
         else {
-            console.log(`${playerTwo.name}'s turn`);
+            console.log(`${playerTwo.name}'s turn (Player 2)`);
         }
     }
 
@@ -142,9 +144,8 @@ const GameController = (() => {
         }
 
         const totalMoves = playerOne.getCellCount() + playerTwo.getCellCount();
-        const lastIndex = totalMoves;
 
-        if (lastIndex % 2 === 0) {
+        if (totalMoves % 2 === 0) {
             playerOne.addCell(playerChoice);
             Gameboard.markCell(playerChoice, playerOne.marker);
         }
@@ -158,17 +159,13 @@ const GameController = (() => {
         isPatternMatch();
 
         if (isGameEnd === false) {
-            showPlayerTurn(lastIndex);
+            showCurrentTurn();
         }
     }
 
     function startGame() {
         Gameboard.showGameboard();
-
-        const totalMoves = playerOne.getCellCount() + playerTwo.getCellCount();
-        const lastIndex = totalMoves - 1;
-
-        showPlayerTurn(lastIndex);
+        showCurrentTurn();
     }
 
     function reset() {
