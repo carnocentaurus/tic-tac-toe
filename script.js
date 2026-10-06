@@ -73,7 +73,7 @@ const GameController = (() => {
             console.log('Game over! Its a tie!');
         }
 
-        console.log("Type 'reset()' and hit enter to start a new game");
+        console.log("Type 'GameController.reset()' and hit enter to start a new game");
     }
 
     function handleRepeatedCellInputs(playerChoice) {
@@ -173,7 +173,11 @@ const GameController = (() => {
 
     function startGame() {
         Gameboard.showGameboard();
-        showPlayerTurn(-1);
+
+        const totalMoves = playerOne.getCellCount() + playerTwo.getCellCount();
+        const lastIndex = totalMoves - 1;
+
+        showPlayerTurn(lastIndex);
     }
 
     function reset() {
