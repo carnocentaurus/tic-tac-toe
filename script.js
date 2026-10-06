@@ -101,15 +101,6 @@ const GameController = (() => {
         }
     }
 
-    function showPlayerTurn(lastIndex) {
-        if (lastIndex % 2 !== 0 || lastIndex === -1) {
-            console.log(`${playerOne.name}'s turn (Player 1)`);
-        }
-        else {
-            console.log(`${playerTwo.name}'s turn (Player 2)`);
-        }
-    }
-
     function showCurrentTurn() {
         if (isGameEnd === true) {
             console.log('The game has already ended!');
