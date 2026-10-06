@@ -103,7 +103,7 @@ const GameController = (() => {
 
     function showCurrentTurn() {
         if (isGameEnd === true) {
-            console.log('The game has already ended!');
+            console.log('Game has already ended!');
             return;
         }
 
