@@ -1,3 +1,5 @@
+const gameboardDiv = document.querySelector('.gameboard-div');
+
 const Gameboard = (() => {
     const board = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -145,7 +147,7 @@ const GameController = (() => {
     }
 
     function startGame() {
-        Gameboard.showGameboard();
+        DisplayController.displayGameboard();
         showCurrentTurn();
     }
 
@@ -159,6 +161,20 @@ const GameController = (() => {
         startGame,
         reset,
     };
+})();
+
+const DisplayController = (() => {
+    function displayGameboard() {
+        for (let i = 0; i <= Gameboard.getBoardLength(); i++) {
+            const cellDiv = document.createElement('div');
+            cellDiv.textContent = i;
+            gameboardDiv.appendChild(cellDiv);
+        }
+    }
+
+    return {
+        displayGameboard,
+    }
 })();
 
 function Player(nameInput, playerNumber, marker) {
