@@ -14,13 +14,6 @@ const Gameboard = (() => {
         [2, 4, 6], // diagonal 2
     ];
 
-    function showGameboard() {
-        console.log('');
-        console.log(board[0], board[1], board[2]);
-        console.log(board[3], board[4], board[5]);
-        console.log(board[6], board[7], board[8]);
-    }
-
     function markCell(cell, marker) {
         board[cell] = marker;
     }
@@ -36,7 +29,6 @@ const Gameboard = (() => {
     }
 
     return {
-        showGameboard,
         markCell,
         hasWinningPattern,
         getBoardLength,
