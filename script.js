@@ -26,14 +26,14 @@ const Gameboard = (() => {
         });
     }
 
-    function getBoardLength() {
+    function getLength() {
         return board.length;
     }
 
     return {
         markCell,
         hasWinningPattern,
-        getBoardLength,
+        getLength,
     };
 })();
 
@@ -165,7 +165,7 @@ const GameController = (() => {
 
 const DisplayController = (() => {
     function displayGameboard() {
-        for (let i = 0; i < Gameboard.getBoardLength(); i++) {
+        for (let i = 0; i < Gameboard.getLength(); i++) {
             const cellDiv = document.createElement('div');
             const cellNumber = document.createElement('p');
 
