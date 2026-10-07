@@ -1,12 +1,3 @@
-/*
-alert(`
-    If your console is closed, open it by typing:
-    Ctrl + Shift + J
-    or
-    Right click > Inspect > Console tab
-`);
-*/
-
 console.log('TIC TAC TOE (Console Edition)');
 console.log('');
 console.log("Type 'GameController.play(number)' to mark a cell");
