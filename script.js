@@ -167,7 +167,11 @@ const DisplayController = (() => {
     function displayGameboard() {
         for (let i = 0; i < Gameboard.getBoardLength(); i++) {
             const cellDiv = document.createElement('div');
-            cellDiv.textContent = i;
+            const cellNumber = document.createElement('p');
+
+            cellNumber.textContent = i;
+
+            cellDiv.appendChild(cellNumber);
             gameboardDiv.appendChild(cellDiv);
         }
     }
