@@ -47,16 +47,12 @@ const GameController = (() => {
     function handleGameEnd(gameResult, winningPlayer) {
         endGame();
 
-        console.log('');
-
         if (gameResult === 'hasWinner') {
-            console.log(`Game over! ${winningPlayer} wins!`);
+            alert(`Game over! ${winningPlayer} wins!`);
         }
         else if (gameResult === 'tie') {
-            console.log('Game over! Its a tie!');
+            alert('Game over! Its a tie!');
         }
-
-        console.log("Type 'GameController.reset()' and hit enter to start a new game");
     }
 
     function handleRepeatedCellInputs(playerChoice) {
@@ -86,23 +82,23 @@ const GameController = (() => {
 
     function showCurrentTurn() {
         if (isGameEnd === true) {
-            console.log('Game has already ended!');
+            alert('Game has already ended!');
             return;
         }
 
         const totalMoves = playerOne.getCellCount() + playerTwo.getCellCount();
 
         if (totalMoves % 2 === 0) {
-            console.log(`${playerOne.name}'s turn (Player 1)`);
+            alert(`${playerOne.name}'s turn (Player 1)`);
         }
         else {
-            console.log(`${playerTwo.name}'s turn (Player 2)`);
+            alert(`${playerTwo.name}'s turn (Player 2)`);
         }
     }
 
     function play(playerChoice) {
         if (isGameEnd === true) {
-            console.error('Game has already ended!');
+            alert('Game has already ended!');
             return;
         }
 
@@ -111,18 +107,18 @@ const GameController = (() => {
             Number.isNaN(playerChoice) || 
             !Number.isInteger(playerChoice)
         ) {
-            console.error('Enter a valid whole number from 0 to 8!');
+            alert('Enter a valid whole number from 0 to 8!');
             return;
         }
 
         handleRepeatedCellInputs(playerChoice);
 
         if (playerChoice < 0) {
-            console.error('0 is the minimum input!');
+            alert('0 is the minimum input!');
             return;
         }
         if (playerChoice > 8) {
-            console.error('8 is the maximum input!');
+            alert('8 is the maximum input!');
             return;
         }
 
