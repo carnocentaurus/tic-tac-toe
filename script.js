@@ -1,9 +1,11 @@
+/*
 alert(`
     If your console is closed, open it by typing:
     Ctrl + Shift + J
     or
     Right click > Inspect > Console tab
 `);
+*/
 
 console.log('TIC TAC TOE (Console Edition)');
 console.log('');
@@ -234,6 +236,7 @@ function Player(nameInput, playerNumber, marker) {
     };
 }
 
+/*
 const playerOne = Player(
     prompt('Player one name:'),
     1,
@@ -245,5 +248,6 @@ const playerTwo = Player(
     2,
     'o'
 );
+*/
 
 GameController.startGame();
