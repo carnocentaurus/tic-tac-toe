@@ -49,10 +49,15 @@ const Gameboard = (() => {
         });
     }
 
+    function getBoardLength() {
+        return board.length;
+    }
+
     return {
         showGameboard,
         markCell,
         hasWinningPattern,
+        getBoardLength,
     };
 })();
 
