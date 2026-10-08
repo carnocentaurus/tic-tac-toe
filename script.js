@@ -102,7 +102,7 @@ const GameController = (() => {
             return;
         }
 
-        console.log(playerChoice);
+        playerChoice = Number(playerChoice);
 
         if (
             typeof playerChoice !== 'number' || 
@@ -134,8 +134,6 @@ const GameController = (() => {
             playerTwo.addCell(playerChoice);
             Gameboard.markCell(playerChoice, playerTwo.marker);
         }
-
-        Gameboard.showGameboard();
 
         isPatternMatch();
 
@@ -235,7 +233,6 @@ function Player(nameInput, playerNumber, marker) {
     };
 }
 
-/*
 const playerOne = Player(
     prompt('Player one name:'),
     1,
@@ -247,6 +244,5 @@ const playerTwo = Player(
     2,
     'o'
 );
-*/
 
 GameController.startGame();
