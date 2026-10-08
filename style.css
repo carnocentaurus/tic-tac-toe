@@ -9,7 +9,3 @@
 .gameboard-div div {
     border: 1px solid black;
 }
-
-.gameboard-div div p {
-    visibility: hidden;
-}
