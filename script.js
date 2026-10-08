@@ -102,6 +102,8 @@ const GameController = (() => {
             return;
         }
 
+        console.log(playerChoice);
+
         if (
             typeof playerChoice !== 'number' || 
             Number.isNaN(playerChoice) || 
@@ -169,6 +171,8 @@ const DisplayController = (() => {
 
             cellDiv.appendChild(cellNumber);
             gameboardDiv.appendChild(cellDiv);
+
+            cellDiv.addEventListener('click', () => GameController.play(cellNumber.textContent));
         }
     }
 
