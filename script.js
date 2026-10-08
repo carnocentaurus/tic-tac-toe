@@ -104,25 +104,7 @@ const GameController = (() => {
 
         playerChoice = Number(playerChoice);
 
-        if (
-            typeof playerChoice !== 'number' || 
-            Number.isNaN(playerChoice) || 
-            !Number.isInteger(playerChoice)
-        ) {
-            alert('Enter a valid whole number from 0 to 8!');
-            return;
-        }
-
         handleRepeatedCellInputs(playerChoice);
-
-        if (playerChoice < 0) {
-            alert('0 is the minimum input!');
-            return;
-        }
-        if (playerChoice > 8) {
-            alert('8 is the maximum input!');
-            return;
-        }
 
         const totalMoves = playerOne.getCellCount() + playerTwo.getCellCount();
 
