@@ -30,10 +30,15 @@ const Gameboard = (() => {
         return board.length;
     }
 
+    function getCellValues() {
+        return [...board];
+    }
+
     return {
         markCell,
         hasWinningPattern,
         getLength,
+        getCellValues,
     };
 })();
 
@@ -110,12 +115,18 @@ const GameController = (() => {
 
         if (totalMoves % 2 === 0) {
             playerOne.addCell(playerChoice);
+
             Gameboard.markCell(playerChoice, playerOne.marker);
+            DisplayController.displayMarks(playerOne.marker);
         }
         else {
             playerTwo.addCell(playerChoice);
+
             Gameboard.markCell(playerChoice, playerTwo.marker);
+            DisplayController.displayMarks(playerTwo.marker);
         }
+
+        DisplayController.displayMarks();
 
         isPatternMatch();
 
@@ -147,6 +158,7 @@ const DisplayController = (() => {
             const cellDiv = document.createElement('div');
             const cellNumber = document.createElement('p');
 
+            cellNumber.className = 'cell-number';
             cellNumber.textContent = i;
 
             cellDiv.appendChild(cellNumber);
@@ -156,8 +168,20 @@ const DisplayController = (() => {
         }
     }
 
+    function displayMarks() {
+        const board = Gameboard.getCellValues();
+        const cellNumbers = document.querySelectorAll('.cell-number');
+
+        for (let i = 0; i < board.length; i++) {
+            if (board[i] === 'x' || board[i] === 'o') {
+                cellNumbers[i].textContent = 'x';
+            }
+        }
+    }
+
     return {
         displayGameboard,
+        displayMarks,
     }
 })();
 
