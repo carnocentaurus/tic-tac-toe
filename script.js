@@ -243,13 +243,13 @@ function Player(nameInput, playerNumber, marker) {
 }
 
 const playerOne = Player(
-    prompt('Player one name:'),
+    'Player 1',
     1,
     'x'
 );
 
 const playerTwo = Player(
-    prompt('Player two name:'),
+    'Player 2',
     2,
     'o'
 );
