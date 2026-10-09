@@ -4,7 +4,7 @@ const gameboardDiv = document.querySelector('.gameboard-div');
 const messageDisplay = document.querySelector('.message-display');
 
 document.addEventListener('DOMContentLoaded', () => {
-    playerNameInputModal.showModal();
+    DisplayController.displayModal();
 });
 
 playerNameConfirmButton.addEventListener('click', () => {
@@ -162,6 +162,10 @@ const GameController = (() => {
 })();
 
 const DisplayController = (() => {
+    function displayModal() {
+        playerNameInputModal.showModal();
+    }
+
     function displayGameboard() {
         for (let i = 0; i < Gameboard.getLength(); i++) {
             const cellDiv = document.createElement('div');
@@ -194,6 +198,7 @@ const DisplayController = (() => {
     }
 
     return {
+        displayModal,
         displayGameboard,
         displayMarks,
     }
