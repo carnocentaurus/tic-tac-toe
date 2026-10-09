@@ -30,7 +30,7 @@ const Gameboard = (() => {
         return board.length;
     }
 
-    function getCellValues() {
+    function getBoard() {
         return [...board];
     }
 
@@ -38,7 +38,7 @@ const Gameboard = (() => {
         markCell,
         hasWinningPattern,
         getLength,
-        getCellValues,
+        getBoard,
     };
 })();
 
@@ -167,7 +167,7 @@ const DisplayController = (() => {
     }
 
     function displayMarks(marker) {
-        const board = Gameboard.getCellValues();
+        const board = Gameboard.getBoard();
         const cellNumbers = document.querySelectorAll('.cell-number');
 
         for (let i = 0; i < board.length; i++) {
