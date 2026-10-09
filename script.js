@@ -1,9 +1,14 @@
 const playerNameInputModal = document.querySelector('.player-name-input-modal');
+const playerNameConfirmButton = document.querySelector('.player-name-confirm-button');
 const gameboardDiv = document.querySelector('.gameboard-div');
 const messageDisplay = document.querySelector('.message-display');
 
 document.addEventListener('DOMContentLoaded', () => {
     playerNameInputModal.showModal();
+});
+
+playerNameConfirmButton.addEventListener('click', () => {
+    playerNameInputModal.close();
 });
 
 const Gameboard = (() => {
