@@ -10,6 +10,30 @@
 <body>
 
     <main>
+        <dialog class="player-name-input-modal">
+            <label for="player-one-name-input">
+                <input
+                    id="player-one-name-input"
+                    placeholder="Player One Name"
+                    minlength="1"
+                    maxlength="20"
+                    required
+                >
+            </label>
+
+            <label for="player-two-name-input">
+                <input
+                    id="player-two-name-input"
+                    placeholder="Player Two Name"
+                    minlength="1"
+                    maxlength="20"
+                    required
+                >
+            </label>
+
+            <button class="player-name-confirm-button">Confirm</button>
+        </dialog>
+
         <div class="gameboard-div"></div>
 
         <div class="bottom-content-div">
