@@ -126,8 +126,6 @@ const GameController = (() => {
             DisplayController.displayMarks(playerTwo.marker);
         }
 
-        DisplayController.displayMarks();
-
         isPatternMatch();
 
         if (isGameEnd === false) {
@@ -168,13 +166,13 @@ const DisplayController = (() => {
         }
     }
 
-    function displayMarks() {
+    function displayMarks(marker) {
         const board = Gameboard.getCellValues();
         const cellNumbers = document.querySelectorAll('.cell-number');
 
         for (let i = 0; i < board.length; i++) {
             if (board[i] === 'x' || board[i] === 'o') {
-                cellNumbers[i].textContent = 'x';
+                cellNumbers[i].textContent = marker;
             }
         }
     }
