@@ -117,13 +117,13 @@ const GameController = (() => {
             playerOne.addCell(playerChoice);
 
             Gameboard.markCell(playerChoice, playerOne.marker);
-            DisplayController.displayMarks(playerOne.marker);
+            DisplayController.displayMarks();
         }
         else {
             playerTwo.addCell(playerChoice);
 
             Gameboard.markCell(playerChoice, playerTwo.marker);
-            DisplayController.displayMarks(playerTwo.marker);
+            DisplayController.displayMarks();
         }
 
         isPatternMatch();
@@ -166,13 +166,16 @@ const DisplayController = (() => {
         }
     }
 
-    function displayMarks(marker) {
+    function displayMarks() {
         const board = Gameboard.getBoard();
         const cellNumbers = document.querySelectorAll('.cell-number');
 
         for (let i = 0; i < board.length; i++) {
-            if (board[i] === 'x' || board[i] === 'o') {
-                cellNumbers[i].textContent = marker;
+            if (board[i] === 'x') {
+                cellNumbers[i].textContent = playerOne.marker;
+            }
+            else if (board[i] === 'o') {
+                cellNumbers[i].textContent = playerTwo.marker;
             }
         }
     }
