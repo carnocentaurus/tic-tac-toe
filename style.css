@@ -10,6 +10,7 @@
     border: 1px solid black;
 }
 
-.gameboard-div div p {
+.gameboard-div div p,
+.reset-text {
     visibility: hidden;
 }
