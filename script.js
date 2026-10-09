@@ -1,5 +1,10 @@
+const playerNameInputModal = document.querySelector('.player-name-input-modal');
 const gameboardDiv = document.querySelector('.gameboard-div');
 const messageDisplay = document.querySelector('.message-display');
+
+document.addEventListener('DOMContentLoaded', () => {
+    playerNameInputModal.showModal();
+});
 
 const Gameboard = (() => {
     const board = [0, 1, 2, 3, 4, 5, 6, 7, 8];
