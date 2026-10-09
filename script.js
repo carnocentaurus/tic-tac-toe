@@ -1,4 +1,5 @@
 const gameboardDiv = document.querySelector('.gameboard-div');
+const messageDisplay = document.querySelector('.message-display');
 
 const Gameboard = (() => {
     const board = [0, 1, 2, 3, 4, 5, 6, 7, 8];
@@ -53,10 +54,10 @@ const GameController = (() => {
         endGame();
 
         if (gameResult === 'hasWinner') {
-            alert(`Game over! ${winningPlayer} wins!`);
+            messageDisplay.textContent = `Game over! ${winningPlayer} wins!`;
         }
         else if (gameResult === 'tie') {
-            alert('Game over! Its a tie!');
+            messageDisplay.textContent = 'Game over! Its a tie!';
         }
     }
 
@@ -94,10 +95,10 @@ const GameController = (() => {
         const totalMoves = playerOne.getCellCount() + playerTwo.getCellCount();
 
         if (totalMoves % 2 === 0) {
-            alert(`${playerOne.name}'s turn (Player 1)`);
+            messageDisplay.textContent = `${playerOne.name}'s turn (Player 1)`;
         }
         else {
-            alert(`${playerTwo.name}'s turn (Player 2)`);
+            messageDisplay.textContent = `${playerTwo.name}'s turn (Player 2)`;
         }
     }
 
