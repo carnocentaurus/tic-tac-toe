@@ -173,9 +173,11 @@ const DisplayController = (() => {
         for (let i = 0; i < board.length; i++) {
             if (board[i] === 'x') {
                 cellNumbers[i].textContent = playerOne.marker;
+                cellNumbers[i].style.visibility = 'visible';
             }
             else if (board[i] === 'o') {
                 cellNumbers[i].textContent = playerTwo.marker;
+                cellNumbers[i].style.visibility = 'visible';
             }
         }
     }
