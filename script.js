@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 playerNameConfirmButton.addEventListener('click', () => {
-    playerNameInputModal.close();
+    DisplayController.closeModal();
 });
 
 const Gameboard = (() => {
@@ -166,6 +166,10 @@ const DisplayController = (() => {
         playerNameInputModal.showModal();
     }
 
+    function closeModal() {
+        playerNameInputModal.close();
+    }
+
     function displayGameboard() {
         for (let i = 0; i < Gameboard.getLength(); i++) {
             const cellDiv = document.createElement('div');
@@ -199,6 +203,7 @@ const DisplayController = (() => {
 
     return {
         displayModal,
+        closeModal,
         displayGameboard,
         displayMarks,
     }
