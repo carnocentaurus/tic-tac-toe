@@ -1,4 +1,6 @@
 const playerNameInputModal = document.querySelector('.player-name-input-modal');
+const playerOneNameInput = document.querySelector('.player-one-name-input');
+const playerTwoNameInput = document.querySelector('.player-two-name-input');
 const playerNameConfirmButton = document.querySelector('.player-name-confirm-button');
 const gameboardDiv = document.querySelector('.gameboard-div');
 const messageDisplay = document.querySelector('.message-display');
