@@ -57,6 +57,10 @@ const Gameboard = (() => {
 
 const GameController = (() => {
     let isGameEnd = false;
+  
+    let playerOne;
+    let playerTwo;
+
 
     function endGame() {
         isGameEnd = true;
