@@ -61,6 +61,10 @@ const GameController = (() => {
     let playerOne;
     let playerTwo;
 
+    function initializePlayers(playerOneName, playerTwoName) {
+        playerOne = Player(playerOneName, 1, 'x');
+        playerTwo = Player(playerTwoName, 2, 'o');
+    }
 
     function endGame() {
         isGameEnd = true;
@@ -160,6 +164,7 @@ const GameController = (() => {
     }
 
     return {
+        initializePlayers,
         showCurrentTurn,
         play,
         startGame,
