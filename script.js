@@ -9,8 +9,15 @@ document.addEventListener('DOMContentLoaded', () => {
     DisplayController.displayModal();
 });
 
+
 playerNameConfirmButton.addEventListener('click', () => {
+    GameController.initializePlayers(
+        playerOneNameInput.value,
+        playerTwoNameInput.value
+    );
+
     DisplayController.closeModal();
+    GameController.startGame();
 });
 
 const Gameboard = (() => {
@@ -285,5 +292,3 @@ const playerTwo = Player(
     2,
     'o'
 );
-
-GameController.startGame();
