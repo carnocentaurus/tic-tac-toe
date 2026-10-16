@@ -280,15 +280,3 @@ function Player(nameInput, playerNumber, marker) {
         getCells,
     };
 }
-
-const playerOne = Player(
-    'Player 1',
-    1,
-    'x'
-);
-
-const playerTwo = Player(
-    'Player 2',
-    2,
-    'o'
-);
