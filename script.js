@@ -205,10 +205,11 @@ const DisplayController = (() => {
 
     function displayMarks() {
         const board = Gameboard.getBoard();
+        
         const cellNumbers = document.querySelectorAll('.cell-number');
 
         for (let i = 0; i < board.length; i++) {
-            if (board[i] === 'x') {
+            if (board[i] === 'x' || board[i] === 'o') {
                 cellNumbers[i].textContent = board[i];
                 cellNumbers[i].style.visibility = 'visible';
             }
