@@ -4,6 +4,7 @@ const playerTwoNameInput = document.querySelector('#player-two-name-input');
 const playerNameConfirmButton = document.querySelector('.player-name-confirm-button');
 const gameboardDiv = document.querySelector('.gameboard-div');
 const messageDisplay = document.querySelector('.message-display');
+const resetText = document.querySelector('.reset-text');
 
 document.addEventListener('DOMContentLoaded', () => {
     DisplayController.displayModal();
@@ -79,6 +80,7 @@ const GameController = (() => {
 
     function handleGameEnd(gameResult, winningPlayer) {
         endGame();
+        DisplayController.toggleResetTextVisibility();
 
         if (gameResult === 'hasWinner') {
             messageDisplay.textContent = `Game over! ${winningPlayer} wins!`;
@@ -216,11 +218,16 @@ const DisplayController = (() => {
         }
     }
 
+    function toggleResetTextVisibility() {
+        resetText.style.visibility = 'visible';
+    }
+
     return {
         displayModal,
         closeModal,
         displayGameboard,
         displayMarks,
+        toggleResetTextVisibility,
     }
 })();
 
