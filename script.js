@@ -22,6 +22,7 @@ playerNameConfirmButton.addEventListener('click', () => {
 
 resetText.addEventListener('click', () => {
     DisplayController.hideResetText();
+    GameController.resetGame();
 })
 
 const Gameboard = (() => {
@@ -172,7 +173,8 @@ const GameController = (() => {
     }
 
     function resetGame() {
-        location.reload();
+        isGameEnd = false;
+        DisplayController.displayModal();
     }
 
     return {
