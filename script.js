@@ -99,7 +99,8 @@ const GameController = (() => {
 
     function handleRepeatedCellInputs(playerChoice) {
         if (playerOne.hasCell(playerChoice) || playerTwo.hasCell(playerChoice)) {
-            throw new Error(`Cell #${playerChoice} is already marked!`);
+            errorDisplay.textContent = `Cell is already marked!`;
+            DisplayController.displayErrorModal();
         }
     }
 
@@ -124,7 +125,8 @@ const GameController = (() => {
 
     function showCurrentTurn() {
         if (isGameEnd === true) {
-            alert('Game has already ended!');
+            errorDisplay.textContent = 'Game has already ended!';
+            DisplayController.displayErrorModal();
             return;
         }
 
@@ -140,7 +142,8 @@ const GameController = (() => {
 
     function play(playerChoice) {
         if (isGameEnd === true) {
-            alert('Game has already ended!');
+            errorDisplay.textContent = 'Game has already ended!';
+            DisplayController.displayErrorModal();
             return;
         }
 
@@ -198,6 +201,10 @@ const DisplayController = (() => {
         playerNameInputModal.close();
     }
 
+    function displayErrorModal() {
+        errorModal.showModal();
+    }
+
     function displayGameboard() {
         for (let i = 0; i < Gameboard.getLength(); i++) {
             const cellDiv = document.createElement('div');
@@ -237,6 +244,7 @@ const DisplayController = (() => {
     return {
         displayModal,
         closeModal,
+        displayErrorModal,
         displayGameboard,
         displayMarks,
         displayResetText,
