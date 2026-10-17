@@ -83,7 +83,7 @@ const GameController = (() => {
 
     function handleGameEnd(gameResult, winningPlayer) {
         endGame();
-        DisplayController.showResetText();
+        DisplayController.displayResetText();
 
         if (gameResult === 'hasWinner') {
             messageDisplay.textContent = `Game over! ${winningPlayer} wins!`;
@@ -171,7 +171,7 @@ const GameController = (() => {
         showCurrentTurn();
     }
 
-    function reset() {
+    function resetGame() {
         location.reload();
     }
 
@@ -180,7 +180,7 @@ const GameController = (() => {
         showCurrentTurn,
         play,
         startGame,
-        reset,
+        resetGame,
     };
 })();
 
@@ -221,7 +221,7 @@ const DisplayController = (() => {
         }
     }
 
-    function showResetText() {
+    function displayResetText() {
         resetText.style.visibility = 'visible';
     }
 
@@ -234,7 +234,7 @@ const DisplayController = (() => {
         closeModal,
         displayGameboard,
         displayMarks,
-        showResetText,
+        displayResetText,
         hideResetText,
     }
 })();
