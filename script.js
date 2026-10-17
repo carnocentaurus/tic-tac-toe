@@ -101,7 +101,10 @@ const GameController = (() => {
         if (playerOne.hasCell(playerChoice) || playerTwo.hasCell(playerChoice)) {
             errorDisplay.textContent = `Cell is already marked!`;
             DisplayController.displayErrorModal();
+            return true;
         }
+
+        return false;
     }
 
     function isPatternMatch() {
@@ -149,7 +152,9 @@ const GameController = (() => {
 
         playerChoice = Number(playerChoice);
 
-        handleRepeatedCellInputs(playerChoice);
+        if (handleRepeatedCellInputs(playerChoice)) {
+            return;
+        }
 
         const totalMoves = playerOne.getCellCount() + playerTwo.getCellCount();
 
@@ -216,7 +221,7 @@ const DisplayController = (() => {
             cellDiv.appendChild(cellNumber);
             gameboardDiv.appendChild(cellDiv);
 
-            cellDiv.addEventListener('click', () => GameController.play(cellNumber.textContent));
+            cellDiv.addEventListener('click', () => GameController.play(i));
         }
     }
 
