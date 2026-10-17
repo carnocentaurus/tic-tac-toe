@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
     DisplayController.displayModal();
 });
 
-
 playerNameConfirmButton.addEventListener('click', () => {
     GameController.initializePlayers(
         playerOneNameInput.value,
@@ -20,6 +19,10 @@ playerNameConfirmButton.addEventListener('click', () => {
     DisplayController.closeModal();
     GameController.startGame();
 });
+
+resetText.addEventListener('click', () => {
+    DisplayController.hideResetText();
+})
 
 const Gameboard = (() => {
     const board = [0, 1, 2, 3, 4, 5, 6, 7, 8];
@@ -80,7 +83,7 @@ const GameController = (() => {
 
     function handleGameEnd(gameResult, winningPlayer) {
         endGame();
-        DisplayController.toggleResetTextVisibility();
+        DisplayController.showResetText();
 
         if (gameResult === 'hasWinner') {
             messageDisplay.textContent = `Game over! ${winningPlayer} wins!`;
@@ -218,8 +221,12 @@ const DisplayController = (() => {
         }
     }
 
-    function toggleResetTextVisibility() {
+    function showResetText() {
         resetText.style.visibility = 'visible';
+    }
+
+    function hideResetText() {
+        resetText.style.visibility = 'hidden';
     }
 
     return {
@@ -227,7 +234,8 @@ const DisplayController = (() => {
         closeModal,
         displayGameboard,
         displayMarks,
-        toggleResetTextVisibility,
+        showResetText,
+        hideResetText,
     }
 })();
 
