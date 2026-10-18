@@ -34,7 +34,8 @@ errorModalButton.addEventListener('click', () => {
 });
 
 resetText.addEventListener('click', () => {
-    GameController.resetGame();
+    DisplayController.displayConfirmResetModal();
+    //GameController.resetGame();
 });
 
 const Gameboard = (() => {
@@ -240,6 +241,10 @@ const DisplayController = (() => {
         errorModal.close();
     }
 
+    function displayConfirmResetModal() {
+        confirmResetModal.showModal();
+    }
+
     function displayGameboard() {
         gameboardDiv.innerHTML = '';
 
@@ -283,6 +288,7 @@ const DisplayController = (() => {
         closePlayerNameInputModal,
         displayErrorModal,
         closeErrorModal,
+        displayConfirmResetModal,
         displayGameboard,
         displayMarks,
         displayResetText,
