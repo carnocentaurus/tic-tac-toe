@@ -47,6 +47,18 @@ resetText.addEventListener('click', () => {
     DisplayController.displayConfirmResetModal();
 });
 
+playerNameInputModal.addEventListener('cancel', (event) => {
+    event.preventDefault();
+});
+
+errorModal.addEventListener('cancel', (event) => {
+    event.preventDefault();
+});
+
+confirmResetModal.addEventListener('cancel', (event) => {
+    event.preventDefault();
+});
+
 const Gameboard = (() => {
     const board = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
