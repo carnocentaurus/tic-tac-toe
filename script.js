@@ -346,15 +346,20 @@ function Player(nameInput, playerNumber, marker) {
         }
 
         let sanitizedPlayerName = playerNameInput
-            .replace(/[\x00-\x1F\x7F\u200B-\u200D\u2060\uFEFF]/g, ' ')
+            .replace(/[\x00-\x1F\x7F\u200B\u200C\u2060\uFEFF]/g, ' ')
             .trim();
 
         if (sanitizedPlayerName === '') {
             sanitizedPlayerName = `Player ${playerNumber}`;
         }
 
-        // equal to const playerNameCharacters = ['N', 'a', 'm', 'e'];
-        const playerNameCharacters = [...sanitizedPlayerName];
+        const segmenter = new Intl.Segmenter(undefined, {
+            granularity: 'grapheme',
+        });
+
+        const playerNameCharacters = [
+            ...segmenter.segment(sanitizedPlayerName),
+        ].map(segment => segment.segment);
 
         if (playerNameCharacters.length > 30) {
             sanitizedPlayerName = playerNameCharacters.slice(0, 30).join('') + '...';
