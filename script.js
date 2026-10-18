@@ -66,11 +66,18 @@ const Gameboard = (() => {
         return [...board];
     }
 
+    function reset() {
+        for (let i = 0; i < board.length; i++) {
+            board[i] = i;
+        }
+    }
+
     return {
         markCell,
         hasWinningPattern,
         getLength,
         getBoard,
+        reset,
     };
 })();
 
