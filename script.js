@@ -245,6 +245,9 @@ const GameController = (() => {
         DisplayController.displayGameboard();
         messageDisplay.textContent = '';
 
+        playerOneNameInput.value = '';
+        playerTwoNameInput.value = '';
+
         DisplayController.displayPlayerNameInputModal();
     }
 
