@@ -10,7 +10,7 @@ const messageDisplay = document.querySelector('.message-display');
 const resetText = document.querySelector('.reset-text');
 
 document.addEventListener('DOMContentLoaded', () => {
-    DisplayController.displayModal();
+    DisplayController.displayPlayerNameInputModal();
 });
 
 playerNameConfirmButton.addEventListener('click', () => {
@@ -19,7 +19,7 @@ playerNameConfirmButton.addEventListener('click', () => {
         playerTwoNameInput.value
     );
 
-    DisplayController.closeModal();
+    DisplayController.closePlayerNameInputModal();
     GameController.startGame();
 });
 
@@ -189,7 +189,7 @@ const GameController = (() => {
 
     function resetGame() {
         isGameEnd = false;
-        DisplayController.displayModal();
+        DisplayController.displayPlayerNameInputModal();
     }
 
     return {
@@ -202,11 +202,11 @@ const GameController = (() => {
 })();
 
 const DisplayController = (() => {
-    function displayModal() {
+    function displayPlayerNameInputModal() {
         playerNameInputModal.showModal();
     }
 
-    function closeModal() {
+    function closePlayerNameInputModal() {
         playerNameInputModal.close();
     }
 
@@ -257,8 +257,8 @@ const DisplayController = (() => {
     }
 
     return {
-        displayModal,
-        closeModal,
+        displayPlayerNameInputModal,
+        closePlayerNameInputModal,
         displayErrorModal,
         closeErrorModal,
         displayGameboard,
