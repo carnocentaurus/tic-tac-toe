@@ -33,6 +33,14 @@ errorModalButton.addEventListener('click', () => {
     DisplayController.closeErrorModal();
 });
 
+keepNamesButton.addEventListener('click', () => {
+    DisplayController.closeConfirmResetModal();
+});
+
+completeResetButton.addEventListener('click', () => {
+    DisplayController.closeConfirmResetModal();
+});
+
 resetText.addEventListener('click', () => {
     DisplayController.displayConfirmResetModal();
     //GameController.resetGame();
@@ -245,6 +253,10 @@ const DisplayController = (() => {
         confirmResetModal.showModal();
     }
 
+    function closeConfirmResetModal() {
+        confirmResetModal.close();
+    }
+
     function displayGameboard() {
         gameboardDiv.innerHTML = '';
 
@@ -289,6 +301,7 @@ const DisplayController = (() => {
         displayErrorModal,
         closeErrorModal,
         displayConfirmResetModal,
+        closeConfirmResetModal,
         displayGameboard,
         displayMarks,
         displayResetText,
