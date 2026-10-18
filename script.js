@@ -66,6 +66,7 @@ const Gameboard = (() => {
         return [...board];
     }
 
+    // restoring each value clears the marks while preserving the board's original representation
     function reset() {
         for (let i = 0; i < board.length; i++) {
             board[i] = i;
