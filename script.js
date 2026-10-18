@@ -238,10 +238,15 @@ const GameController = (() => {
 
     function resetGameCompletely() {
         Gameboard.reset();
+        playerOne.resetCells();
+        playerTwo.resetCells();
 
         isGameEnd = false;
 
         DisplayController.hideResetText();
+        DisplayController.displayGameboard();
+        messageDisplay.textContent = '';
+
         DisplayController.displayPlayerNameInputModal();
     }
 
