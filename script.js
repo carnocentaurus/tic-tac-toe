@@ -34,6 +34,7 @@ errorModalButton.addEventListener('click', () => {
 });
 
 keepNamesButton.addEventListener('click', () => {
+    GameController.resetGameKeepNames();
     DisplayController.closeConfirmResetModal();
 });
 
@@ -209,7 +210,7 @@ const GameController = (() => {
         showCurrentTurn();
     }
 
-    function resetGame() {
+    function resetGameKeepNames() {
         Gameboard.reset();
         playerOne.resetCells();
         playerTwo.resetCells();
@@ -228,7 +229,7 @@ const GameController = (() => {
         showCurrentTurn,
         play,
         startGame,
-        resetGame,
+        resetGameKeepNames,
     };
 })();
 
