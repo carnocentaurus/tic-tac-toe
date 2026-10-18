@@ -211,6 +211,8 @@ const DisplayController = (() => {
     }
 
     function displayGameboard() {
+        gameboardDiv.innerHTML = '';
+
         for (let i = 0; i < Gameboard.getLength(); i++) {
             const cellDiv = document.createElement('div');
             const cellNumber = document.createElement('p');
