@@ -238,8 +238,6 @@ const GameController = (() => {
 
     function resetGameCompletely() {
         Gameboard.reset();
-        playerOne.resetCells();
-        playerTwo.resetCells();
 
         isGameEnd = false;
 
