@@ -28,7 +28,6 @@ errorModalButton.addEventListener('click', () => {
 });
 
 resetText.addEventListener('click', () => {
-    DisplayController.hideResetText();
     GameController.resetGame();
 });
 
@@ -196,8 +195,17 @@ const GameController = (() => {
     }
 
     function resetGame() {
+        Gameboard.reset();
+        playerOne.resetCells();
+        playerTwo.resetCells();
+
         isGameEnd = false;
-        DisplayController.displayPlayerNameInputModal();
+
+        DisplayController.hideResetText();
+        DisplayController.displayGameboard();
+        messageDisplay.textContent = '';
+
+        showCurrentTurn();
     }
 
     return {
