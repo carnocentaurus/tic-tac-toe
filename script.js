@@ -39,12 +39,12 @@ keepNamesButton.addEventListener('click', () => {
 });
 
 completeResetButton.addEventListener('click', () => {
+    GameController.resetGameCompletely();
     DisplayController.closeConfirmResetModal();
 });
 
 resetText.addEventListener('click', () => {
     DisplayController.displayConfirmResetModal();
-    //GameController.resetGame();
 });
 
 const Gameboard = (() => {
@@ -224,12 +224,22 @@ const GameController = (() => {
         showCurrentTurn();
     }
 
+    function resetGameCompletely() {
+        Gameboard.reset();
+
+        isGameEnd = false;
+
+        DisplayController.hideResetText();
+        DisplayController.displayPlayerNameInputModal();
+    }
+
     return {
         initializePlayers,
         showCurrentTurn,
         play,
         startGame,
         resetGameKeepNames,
+        resetGameCompletely,
     };
 })();
 
