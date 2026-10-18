@@ -2,10 +2,16 @@ const playerNameInputModal = document.querySelector('.player-name-input-modal');
 const playerOneNameInput = document.querySelector('#player-one-name-input');
 const playerTwoNameInput = document.querySelector('#player-two-name-input');
 const playerNameConfirmButton = document.querySelector('.player-name-confirm-button');
-const gameboardDiv = document.querySelector('.gameboard-div');
+
 const errorModal = document.querySelector('.error-modal');
 const errorDisplay = document.querySelector('.error-display');
 const errorModalButton = document.querySelector('.error-modal-button');
+
+const confirmResetModal = document.querySelector('.confirm-reset-modal');
+const keepNamesButton = document.querySelector('.keep-names-button');
+const completeResetButton = document.querySelector('.complete-reset-button');
+
+const gameboardDiv = document.querySelector('.gameboard-div');
 const messageDisplay = document.querySelector('.message-display');
 const resetText = document.querySelector('.reset-text');
 
