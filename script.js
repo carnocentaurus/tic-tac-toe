@@ -308,6 +308,10 @@ function Player(nameInput, playerNumber, marker) {
         cells.push(cell);
     }
 
+    function resetCells() {
+        cells.length = 0;
+    }
+
     function hasCell(cell) {
         return cells.includes(cell);
     }
@@ -316,6 +320,7 @@ function Player(nameInput, playerNumber, marker) {
         return cells.length;
     }
 
+    // empties the existing array without replacing it
     function getCells() {
         return [...cells];
     }
@@ -324,6 +329,7 @@ function Player(nameInput, playerNumber, marker) {
         name,
         marker,
         addCell,
+        resetCells,
         hasCell,
         getCellCount,
         getCells,
