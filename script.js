@@ -101,6 +101,10 @@ const Gameboard = (() => {
         return [...board];
     }
 
+    function getMoveCount() {
+        return board.filter(cell => cell === 'x' || cell === 'o').length;
+    }
+
     // restoring each value clears the marks while preserving the board's original representation
     function reset() {
         for (let i = 0; i < board.length; i++) {
@@ -115,6 +119,7 @@ const Gameboard = (() => {
         hasWinningPattern,
         getLength,
         getBoard,
+        getMoveCount,
         reset,
     };
 })();
