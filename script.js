@@ -167,7 +167,7 @@ const GameController = (() => {
             handleGameEnd('hasWinner', `Player 2 (${playerTwo.name})`);
         }
         else if (
-            playerOne.getCellCount() + playerTwo.getCellCount() >= 9 && 
+            Gameboard.isFull() && 
             isPlayerOnePatternMatch === false && 
             isPlayerTwoPatternMatch === false
         ) {
