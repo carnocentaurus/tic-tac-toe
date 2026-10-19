@@ -79,6 +79,10 @@ const Gameboard = (() => {
         board[cell] = marker;
     }
 
+    function isCellOccupied(cell) {
+        return board[cell] === 'x' || board[cell] === 'o';
+    }
+
     function hasWinningPattern(playerCells) {
         return patterns.some(pattern => {
             return pattern.every(cell => playerCells.includes(cell));
@@ -102,6 +106,7 @@ const Gameboard = (() => {
 
     return {
         markCell,
+        isCellOccupied,
         hasWinningPattern,
         getLength,
         getBoard,
