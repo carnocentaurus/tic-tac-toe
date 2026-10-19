@@ -235,8 +235,6 @@ const GameController = (() => {
 
     function resetGameKeepNames() {
         Gameboard.reset();
-        playerOne.resetCells();
-        playerTwo.resetCells();
 
         isGameEnd = false;
 
