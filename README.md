@@ -1,203 +1,137 @@
-# Tic Tac Toe (Console Edition)
+# Tic-Tac-Toe
 
-A two-player Tic Tac Toe game written in vanilla JavaScript that is played entirely from the browser's developer console. No HTML, CSS, build tools, or dependencies are required beyond the script itself.
+A two-player, browser-based Tic-Tac-Toe game built with vanilla JavaScript. Players enter their names, take turns clicking cells on a 3×3 board, and the game announces a winner or a tie. Modal dialogs handle name entry, error messages, and reset confirmation.
 
 ## Features
 
-- Two-player, turn-based gameplay (Player 1 is `x`, Player 2 is `o`)
-- Plays entirely in the browser console
-- Custom player names, with automatic fallback to `Player 1` / `Player 2`
-- Name sanitization (strips control and zero-width characters, trims whitespace, truncates long names to 30 characters)
-- Win detection across all 8 winning patterns (3 rows, 3 columns, 2 diagonals)
-- Tie detection
-- Prevents replaying already-marked cells
-- Prevents moves after the game ends
-- Input validation for non-numeric, non-integer, and out-of-range values
-- Modular design using the module pattern (IIFEs) and a `Player` factory function
+- **Two-player local play** on a single device. Player 1 is `x` and always moves first; Player 2 is `o`.
+- **Custom player names** collected in a modal at startup, with sanitization and sensible defaults.
+- **Turn indicator** showing whose turn it is and which player number they are.
+- **Win and tie detection** across all 8 winning lines (3 rows, 3 columns, 2 diagonals).
+- **Invalid move handling** with an error modal for clicking an occupied cell or clicking after the game has ended.
+- **Two reset options** once a game ends:
+  - *Keep names*: start a fresh board with the same players.
+  - *Complete reset*: clear the names and return to the name-entry modal.
+- **Unicode-aware name handling** using `Intl.Segmenter`, so emoji and combined characters count as one character.
+- **Escape key disabled** on all modals, so dialogs can only be dismissed through their own buttons.
 
-## Requirements
+## Tech Stack
 
-- Any modern web browser with a developer console (Chrome, Edge, Firefox, Safari, Brave, etc.)
-- A way to run the script on a page, such as:
-  - An HTML file that includes the script, or
-  - The browser console itself (paste the code directly)
-
-## Getting Started
-
-### Option 1: Include in an HTML page
-
-1. Save the game code as `script.js`.
-2. Create an `index.html` in the same folder:
-
-   ```html
-   <!DOCTYPE html>
-   <html lang="en">
-   <head>
-       <meta charset="UTF-8">
-       <title>Tic Tac Toe (Console Edition)</title>
-   </head>
-   <body>
-       <h1>Tic Tac Toe (Console Edition)</h1>
-       <p>Open the developer console to play.</p>
-       <script src="script.js"></script>
-   </body>
-   </html>
-   ```
-
-3. Open `index.html` in your browser.
-4. Open the console (see below) if it is not already open.
-
-### Option 2: Paste into the console
-
-1. Open any web page and open the developer console.
-2. Paste the entire contents of `script.js` and press Enter.
-
-> Note: some browsers require you to type `allow pasting` in the console before pasting is permitted.
-
-### Opening the Console
-
-- **Windows/Linux:** `Ctrl + Shift + J` (Chrome/Edge) or `Ctrl + Shift + K` (Firefox)
-- **macOS:** `Cmd + Option + J` (Chrome) or `Cmd + Option + K` (Firefox)
-- **Any browser:** right-click the page, choose **Inspect**, then open the **Console** tab
-
-## How to Play
-
-1. When the page loads, an alert reminds you how to open the console.
-2. Two prompts ask for the player names. Press **Cancel** or leave blank to use the defaults (`Player 1`, `Player 2`).
-3. The empty board is printed to the console along with the current turn.
-4. Players alternate by calling `GameController.play(number)`, where `number` is the cell index (0-8).
-5. The game ends when a player completes a row, column, or diagonal, or when all 9 cells are filled (tie).
-6. Call `GameController.reset()` to start a new game.
-
-Player 1 (`x`) always goes first.
-
-## Commands
-
-| Command | Description |
-| --- | --- |
-| `GameController.play(n)` | Marks cell `n` (0-8) for the current player |
-| `GameController.showCurrentTurn()` | Prints whose turn it is |
-| `GameController.reset()` | Reloads the page to start a fresh game |
-
-`GameController.startGame()` is also exposed and is called automatically at load time. You do not need to call it manually.
-
-## Board Layout
-
-Cells are numbered 0-8, left to right, top to bottom:
-
-```
-0 1 2
-3 4 5
-6 7 8
-```
-
-Unmarked cells display their index. Marked cells display `x` or `o`.
-
-**Winning patterns:**
-
-| Type | Cells |
-| --- | --- |
-| Rows | `0 1 2`, `3 4 5`, `6 7 8` |
-| Columns | `0 3 6`, `1 4 7`, `2 5 8` |
-| Diagonals | `0 4 8`, `2 4 6` |
-
-## Example Session
-
-```
-> GameController.play(4)
-
-0 1 2
-3 x 5
-6 7 8
-Bob's turn (Player 2)
-
-> GameController.play(0)
-
-o 1 2
-3 x 5
-6 7 8
-Alice's turn (Player 1)
-
-> GameController.play(2)
-> GameController.play(1)
-> GameController.play(6)
-
-o o x
-3 x 5
-x 7 8
-
-Game over! Player 1 (Alice) wins!
-Type 'GameController.reset()' and hit enter to start a new game
-```
+- HTML (including the native `<dialog>` element)
+- CSS
+- Vanilla JavaScript (ES6+), no dependencies or build step
 
 ## Project Structure
 
+The provided source is a single JavaScript file organized into modules using the IIFE module pattern, plus a factory function:
+
+| Unit | Type | Responsibility |
+| --- | --- | --- |
+| `Gameboard` | IIFE module | Owns board state and the winning patterns; answers questions about the board. |
+| `GameController` | IIFE module | Game flow: players, turns, validation, win/tie handling, resets. |
+| `DisplayController` | IIFE module | All DOM rendering: modals, the board, marks, reset text. |
+| `Player` | Factory function | Creates a player object with a sanitized name and a marker. |
+
+Project layout:
+
 ```
-.
-├── index.html   # Optional host page that loads the script
-├── script.js    # The full game logic
+tic-tac-toe/
+├── index.html
+├── style.css
+├── script.js
 └── README.md
 ```
 
-## Architecture
+### Browser Requirements
 
-The code is organized into three parts, each with a distinct responsibility.
+The code relies on features available in current versions of Chrome, Edge, Firefox, and Safari:
 
-### `Gameboard` (module / IIFE)
+- `<dialog>` with `showModal()` / `close()`
+- `Intl.Segmenter` (Firefox support arrived in version 125)
 
-Owns the board state and board-related logic.
+## How to Play
 
-- `board`: array of 9 values. Starts as `[0..8]` so unmarked cells show their index when printed.
-- `patterns`: the 8 winning combinations.
-- `showGameboard()`: prints the board as three rows.
-- `markCell(cell, marker)`: places a marker on a cell.
-- `hasWinningPattern(playerCells)`: returns `true` if the given cells contain at least one complete winning pattern.
+1. On load, a modal asks for both player names. Leaving a name blank defaults it to `Player 1` or `Player 2`.
+2. Click **Start**. The board appears and the message area shows whose turn it is.
+3. Players alternate clicking cells. Player 1 places `x`; Player 2 places `o`.
+4. The game ends when a player completes a row, column, or diagonal, or when all nine cells are filled.
+5. After the game ends, click the reset text to open the reset modal and choose **Keep names** or **Complete reset**.
 
-### `GameController` (module / IIFE)
+## Board Layout
 
-Owns game flow, turn order, and end-of-game handling.
+Cells are indexed 0–8, left to right and top to bottom:
 
-- `play(playerChoice)`: validates input, applies the move, prints the board, checks for a win/tie, and announces the next turn.
-- `showCurrentTurn()`: determines the current player from the total number of moves (even = Player 1, odd = Player 2).
-- `startGame()`: prints the initial board and first turn.
-- `reset()`: reloads the page (`location.reload()`).
-- Internal helpers: `endGame`, `handleGameEnd`, `handleRepeatedCellInputs`, `isPatternMatch`.
+```
+ 0 | 1 | 2
+---+---+---
+ 3 | 4 | 5
+---+---+---
+ 6 | 7 | 8
+```
 
-### `Player` (factory function)
+Winning patterns:
 
-Creates a player object that tracks its own name, marker, and claimed cells.
+```
+Rows:      [0,1,2]  [3,4,5]  [6,7,8]
+Columns:   [0,3,6]  [1,4,7]  [2,5,8]
+Diagonals: [0,4,8]  [2,4,6]
+```
 
-- `name`: sanitized display name
-- `marker`: `'x'` or `'o'`
-- `addCell(cell)`, `hasCell(cell)`, `getCellCount()`, `getCells()` (returns a copy to protect internal state)
+## Architecture and Design Notes
 
-### Turn logic
+### Gameboard
 
-No explicit "current player" variable is stored. The turn is derived from the combined move count of both players: an even count means Player 1 moves, an odd count means Player 2.
+The board is an array initialized to `[0, 1, 2, 3, 4, 5, 6, 7, 8]`. Each slot holds its own index until it is marked with `'x'` or `'o'`. This means `reset()` simply restores each value to its index, preserving the original representation.
 
-### Win and tie logic
-
-After each move, `isPatternMatch()` checks both players against every winning pattern. Player 1 is checked first. If neither has won and 9 moves have been made, the game is a tie.
-
-## Input Validation and Error Handling
-
-| Input | Behavior |
+| Method | Description |
 | --- | --- |
-| Non-number (e.g. `'4'`, `null`) | `console.error`: "Enter a valid whole number from 0 to 8!" |
-| `NaN` or non-integer (e.g. `2.5`) | Same error as above |
-| Number below 0 | `console.error`: "0 is the minimum input!" |
-| Number above 8 | `console.error`: "8 is the maximum input!" |
-| Already-marked cell | Throws `Error`: "Cell #n is already marked!" |
-| Play after game ends | `console.error`: "Game has already ended!" |
+| `markCell(cell, marker)` | Places a marker at the given index. |
+| `isCellOccupied(cell)` | Returns `true` if the cell holds `'x'` or `'o'`. |
+| `isFull()` | Returns `true` if every cell is marked. |
+| `hasWinningPattern(marker)` | Returns `true` if the marker occupies any complete winning line. |
+| `getLength()` | Returns the number of cells (9). |
+| `getBoard()` | Returns a **copy** of the board array, protecting internal state. |
+| `getMoveCount()` | Returns the number of marked cells. |
+| `reset()` | Restores the board to its initial state. |
 
-### Player name sanitization
+### GameController
 
-- Cancelled prompt (`null`) becomes `Player 1` or `Player 2`
-- Control characters and zero-width characters are replaced with spaces
-- Leading and trailing whitespace is trimmed
-- Empty results fall back to the default name
-- Names longer than 30 characters are truncated and suffixed with `...` (counted by Unicode characters, so emoji are handled correctly)
+Tracks whether the game has ended (`isGameEnd`) and holds both player objects. **Turn order is derived from the move count**: an even number of moves means it is Player 1's turn, odd means Player 2's. There is no separate "current player" variable to fall out of sync.
 
-## License
+| Method | Description |
+| --- | --- |
+| `initializePlayers(nameOne, nameTwo)` | Creates both `Player` objects (`x` and `o`). |
+| `startGame()` | Renders the board and shows the first turn message. |
+| `play(playerChoice)` | Handles a move: validates, marks the cell, checks for a result, updates the turn message. |
+| `showCurrentTurn()` | Updates the message display with the current player's turn. |
+| `resetGameKeepNames()` | Clears the board and state, keeping the existing players. |
+| `resetGameCompletely()` | Clears the board and state, empties name inputs, and reopens the name modal. |
 
-Free to use and modify for learning and personal projects.
+Move flow inside `play()`:
+
+1. If the game already ended, show the "Game has already ended!" error and return.
+2. Convert the choice to a number.
+3. If the cell is occupied, show "Cell is already marked!" and return.
+4. Mark the cell for the current player and re-render the marks.
+5. Check for a winner or tie. If the game continues, update the turn message.
+
+### DisplayController
+
+Contains all direct DOM manipulation: opening and closing the three modals, building the board, rendering marks, and showing or hiding the reset text. The game logic modules never build elements themselves, apart from setting message text on the shared display elements.
+
+### Player and Name Sanitization
+
+`Player(nameInput, playerNumber, marker)` returns `{ name, marker }`. Names are sanitized as follows:
+
+1. Control characters and invisible characters (zero-width space, zero-width non-joiner, word joiner, byte-order mark, and C0/DEL controls) are replaced with spaces.
+2. The result is trimmed.
+3. An empty result falls back to `Player <number>`.
+4. The name is split into **grapheme clusters** with `Intl.Segmenter`. If it exceeds 30 graphemes, it is truncated to 30 and `...` is appended.
+
+Counting graphemes rather than UTF-16 code units prevents emoji and accented characters from being cut in half.
+
+Display text is assigned with `textContent`, so names are never interpreted as HTML.
+
+### Modal Behavior
+
+All three `<dialog>` elements have their `cancel` event prevented, which disables closing via the Escape key. Each modal must be closed with its own button, which keeps the game from landing in an inconsistent state (for example, a missing player setup).
