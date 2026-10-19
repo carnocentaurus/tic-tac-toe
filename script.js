@@ -380,36 +380,9 @@ function Player(nameInput, playerNumber, marker) {
     }
 
     const name = sanitizePlayerName(nameInput, playerNumber);
-    const cells = [];
-
-    function addCell(cell) {
-        cells.push(cell);
-    }
-
-    function resetCells() {
-        cells.length = 0;
-    }
-
-    function hasCell(cell) {
-        return cells.includes(cell);
-    }
-
-    function getCellCount() {
-        return cells.length;
-    }
-
-    // empties the existing array without replacing it
-    function getCells() {
-        return [...cells];
-    }
 
     return {
         name,
         marker,
-        addCell,
-        resetCells,
-        hasCell,
-        getCellCount,
-        getCells,
     };
 }
