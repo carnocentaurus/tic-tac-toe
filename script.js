@@ -171,11 +171,7 @@ const GameController = (() => {
         else if (isPlayerTwoPatternMatch === true) {
             handleGameEnd('hasWinner', `Player 2 (${playerTwo.name})`);
         }
-        else if (
-            Gameboard.isFull() && 
-            isPlayerOnePatternMatch === false && 
-            isPlayerTwoPatternMatch === false
-        ) {
+        else if (Gameboard.isFull()) {
             handleGameEnd('tie', '');
         }
     }
