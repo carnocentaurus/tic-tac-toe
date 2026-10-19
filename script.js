@@ -152,8 +152,8 @@ const GameController = (() => {
     }
 
     function isPatternMatch() {
-        const isPlayerOnePatternMatch = Gameboard.hasWinningPattern(playerOne.getCells());
-        const isPlayerTwoPatternMatch = Gameboard.hasWinningPattern(playerTwo.getCells());
+        const isPlayerOnePatternMatch = Gameboard.hasWinningPattern(playerOne.marker);
+        const isPlayerTwoPatternMatch = Gameboard.hasWinningPattern(playerTwo.marker);
 
         if (isPlayerOnePatternMatch === true) {
             handleGameEnd('hasWinner', `Player 1 (${playerOne.name})`);
