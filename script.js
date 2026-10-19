@@ -142,7 +142,7 @@ const GameController = (() => {
     }
 
     function handleRepeatedCellInputs(playerChoice) {
-        if (playerOne.hasCell(playerChoice) || playerTwo.hasCell(playerChoice)) {
+        if (Gameboard.isCellOccupied(playerChoice)) {
             errorDisplay.textContent = `Cell is already marked!`;
             DisplayController.displayErrorModal();
             return true;
