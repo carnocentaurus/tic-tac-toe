@@ -6,6 +6,17 @@
     box-sizing: border-box;
 }
 
+.player-name-input-modal {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    width: 250px;
+    padding: 30px;
+    border: 3px solid #666a6d;
+    border-radius: 5px;
+}
+
 .gameboard-div {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
