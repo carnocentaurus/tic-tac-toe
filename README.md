@@ -2,6 +2,10 @@
 
 A two-player, browser-based Tic-Tac-Toe game built with vanilla JavaScript. Players enter their names, take turns clicking cells on a 3×3 board, and the game announces a winner or a tie. Modal dialogs handle name entry, error messages, and reset confirmation.
 
+### Live Demo
+[Tic Tac Toe](https://carnocentaurus.github.io/tic-tac-toe/)
+
+
 ## Features
 
 - **Two-player local play** on a single device. Player 1 is `x` and always moves first; Player 2 is `o`.
@@ -135,3 +139,5 @@ Display text is assigned with `textContent`, so names are never interpreted as H
 ### Modal Behavior
 
 All three `<dialog>` elements have their `cancel` event prevented, which disables closing via the Escape key. Each modal must be closed with its own button, which keeps the game from landing in an inconsistent state (for example, a missing player setup).
+
+Currently working on the proper style/aesthetic of the project.
