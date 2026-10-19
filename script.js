@@ -187,7 +187,7 @@ const GameController = (() => {
             return;
         }
 
-        const totalMoves = playerOne.getCellCount() + playerTwo.getCellCount();
+        const totalMoves = Gameboard.getMoveCount();
 
         if (totalMoves % 2 === 0) {
             messageDisplay.textContent = `${playerOne.name}'s turn (Player 1)`;
