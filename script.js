@@ -208,14 +208,10 @@ const GameController = (() => {
         const totalMoves = playerOne.getCellCount() + playerTwo.getCellCount();
 
         if (totalMoves % 2 === 0) {
-            playerOne.addCell(playerChoice);
-
             Gameboard.markCell(playerChoice, playerOne.marker);
             DisplayController.displayMarks();
         }
         else {
-            playerTwo.addCell(playerChoice);
-
             Gameboard.markCell(playerChoice, playerTwo.marker);
             DisplayController.displayMarks();
         }
