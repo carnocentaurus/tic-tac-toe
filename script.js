@@ -350,10 +350,6 @@ const DisplayController = (() => {
 function Player(nameInput, playerNumber, marker) {
 
     function sanitizePlayerName(playerNameInput, playerNumber) {
-        if (playerNameInput === null) {
-            playerNameInput = `Player ${playerNumber}`;
-        }
-
         let sanitizedPlayerName = playerNameInput
             .replace(/[\x00-\x1F\x7F\u200B\u200C\u2060\uFEFF]/g, ' ')
             .trim();
