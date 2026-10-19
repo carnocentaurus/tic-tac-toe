@@ -11,6 +11,7 @@
     flex-direction: column;
     gap: 10px;
 
+    background-color: #fefefa;
     width: 250px;
     padding: 30px;
     border: 3px solid #666a6d;
@@ -20,6 +21,7 @@
 
 .player-name-input-modal label input {
     border: 2px solid #666a6d;
+    background-color: #fefefa;
     width: 100%;
     height: 30px;
     font-size: 1rem;
