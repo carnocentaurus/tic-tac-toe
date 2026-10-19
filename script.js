@@ -83,9 +83,9 @@ const Gameboard = (() => {
         return board[cell] === 'x' || board[cell] === 'o';
     }
 
-    function hasWinningPattern(playerCells) {
+    function hasWinningPattern(marker) {
         return patterns.some(pattern => {
-            return pattern.every(cell => playerCells.includes(cell));
+            return pattern.every(cell => board[cell] === marker);
         });
     }
 
