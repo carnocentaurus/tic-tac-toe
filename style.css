@@ -123,6 +123,7 @@ body {
 }
 
 .gameboard-div p {
+    font-size: 3rem;
     color: var(--nevada);
 }
 
