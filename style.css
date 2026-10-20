@@ -36,6 +36,11 @@
     margin: auto;
 }
 
+.player-name-input-modal label {
+    font-size: 0.9rem;
+    color: var(--anchor)
+}
+
 .player-name-input-modal label input {
     border: 2px solid var(--nevada);
     color: var(--anchor);
