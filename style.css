@@ -12,6 +12,8 @@
 :root {
     --nevada: #666a6d;
     --baby-powder: #fefefa;
+    --lava: #808588;
+    --anchor: #3e424b;
 }
 
 * {
@@ -36,6 +38,7 @@
 
 .player-name-input-modal label input {
     border: 2px solid var(--nevada);
+    color: var(--anchor);
     background-color: var(--baby-powder);
     width: 100%;
     height: 30px;
@@ -63,7 +66,7 @@
 
 .player-name-confirm-button:hover {
     cursor: pointer;
-    background-color: #808588;
+    background-color: var(--lava);
 }
 
 .gameboard-div {
