@@ -272,7 +272,7 @@ const DisplayController = (() => {
     }
 
     function closePlayerNameInputModal() {
-        playerNameInputModal.style.display = 'none';
+        playerNameInputModal.close();
     }
 
     function displayErrorModal() {

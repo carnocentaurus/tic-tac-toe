@@ -105,3 +105,12 @@ body {
 .reset-text {
     visibility: hidden;
 }
+
+.reset-text {
+    font-size: 0.8rem;
+    color: var(--anchor);
+    text-align: center;
+    text-decoration: underline;
+    margin-top: 5px;
+    cursor: pointer;
+}
