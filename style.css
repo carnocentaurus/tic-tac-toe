@@ -116,6 +116,12 @@ body {
     background-color: var(--lava);
 }
 
+.title {
+    color: var(--nevada);
+    text-align: center;
+    margin-bottom: 50px;
+}
+
 .gameboard-div {
     display: grid;
     grid-template-columns: repeat(3, 100px);
