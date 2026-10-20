@@ -46,6 +46,24 @@ body {
     margin: auto;
 }
 
+.confirm-reset-modal[open] {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    background-color: var(--baby-powder);
+    width: 500px;
+    padding: 30px;
+    border: 3px solid var(--nevada);
+    border-radius: 5px;
+    margin: auto;
+}
+
+.confirm-reset-modal h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
 .player-name-input-modal label {
     font-size: 0.9rem;
     color: var(--anchor);
