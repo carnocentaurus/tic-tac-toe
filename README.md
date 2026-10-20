@@ -139,5 +139,3 @@ Display text is assigned with `textContent`, so names are never interpreted as H
 ### Modal Behavior
 
 All three `<dialog>` elements have their `cancel` event prevented, which disables closing via the Escape key. Each modal must be closed with its own button, which keeps the game from landing in an inconsistent state (for example, a missing player setup).
-
-Currently working on the proper style/aesthetic of the project.
