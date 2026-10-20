@@ -1,11 +1,21 @@
 /* Oct 7, 2026 */
 
+@font-face {
+    font-family: 'Roboto';
+    src: url('fonts/Roboto-Regular.woff2') format('woff2'),
+        url('fonts/Roboto-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 :root {
     --nevada: #666a6d;
     --baby-powder: #fefefa;
 }
 
 * {
+    font-family: 'Roboto';
     margin: 0;
     padding: 0;
     box-sizing: border-box;
