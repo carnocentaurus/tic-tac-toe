@@ -85,12 +85,13 @@ body {
 
 .gameboard-div {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 3px;
 }
 
 .gameboard-div div {
-    border: 1px solid black;
+    border: 3px solid var(--nevada);
 }
 
 .gameboard-div div p,
