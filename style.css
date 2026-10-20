@@ -51,6 +51,7 @@ body {
     flex-direction: column;
     gap: 10px;
 
+    color: var(--anchor);
     background-color: var(--baby-powder);
     width: 500px;
     padding: 30px;
@@ -62,6 +63,16 @@ body {
 .confirm-reset-modal h2 {
     text-align: center;
     margin-bottom: 10px;
+}
+
+.confirm-reset-modal div button {
+    color: var(--baby-powder);
+    background-color: var(--nevada);
+    border: none;
+    font-size: 1rem;
+    padding: 2px 10px;
+    margin: 5px 0 10px;
+    border-radius: 2px;
 }
 
 .player-name-input-modal label {
@@ -99,7 +110,8 @@ body {
 }
 
 .player-name-confirm-button:hover,
-.error-modal-button:hover {
+.error-modal-button:hover,
+.confirm-reset-modal div button:hover {
     cursor: pointer;
     background-color: var(--lava);
 }
