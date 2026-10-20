@@ -24,11 +24,12 @@
 }
 
 body {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     background-color: var(--baby-powder);
+    height: 100vh;
 }
 
 .player-name-input-modal {
