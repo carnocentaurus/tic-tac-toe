@@ -90,6 +90,10 @@ body {
 }
 
 .gameboard-div div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     border: 3px solid var(--nevada);
 }
 
@@ -113,16 +117,20 @@ body {
     border-right: none;
 }
 
+.gameboard-div div p,
+.reset-text {
+    visibility: hidden;
+}
+
+.gameboard-div p {
+    color: var(--nevada);
+}
+
 .message-display {
     font-size: 0.8rem;
     color: var(--anchor);
     text-align: center;
     margin-top: 50px;
-}
-
-.gameboard-div div p,
-.reset-text {
-    visibility: hidden;
 }
 
 .reset-text {
