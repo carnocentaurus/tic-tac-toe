@@ -32,7 +32,8 @@ body {
     height: 100vh;
 }
 
-.player-name-input-modal[open] {
+.player-name-input-modal[open],
+.error-modal[open] {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -69,7 +70,8 @@ body {
     outline: none;
 }
 
-.player-name-confirm-button {
+.player-name-confirm-button,
+.error-modal-button {
     color: var(--baby-powder);
     background-color: var(--nevada);
     border: none;
@@ -78,7 +80,8 @@ body {
     border-radius: 2px;
 }
 
-.player-name-confirm-button:hover {
+.player-name-confirm-button:hover,
+.error-modal-button:hover {
     cursor: pointer;
     background-color: var(--lava);
 }
