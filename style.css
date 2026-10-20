@@ -32,7 +32,7 @@ body {
     height: 100vh;
 }
 
-.player-name-input-modal {
+.player-name-input-modal[open] {
     display: flex;
     flex-direction: column;
     gap: 10px;
