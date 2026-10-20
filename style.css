@@ -23,6 +23,10 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: var(--baby-powder);
+}
+
 .player-name-input-modal {
     display: flex;
     flex-direction: column;
