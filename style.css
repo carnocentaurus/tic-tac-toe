@@ -24,6 +24,10 @@
 }
 
 body {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+
     background-color: var(--baby-powder);
 }
 
@@ -42,7 +46,7 @@ body {
 
 .player-name-input-modal label {
     font-size: 0.9rem;
-    color: var(--anchor)
+    color: var(--anchor);
 }
 
 .player-name-input-modal label input {
