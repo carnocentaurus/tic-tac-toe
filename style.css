@@ -94,6 +94,13 @@ body {
     border: 3px solid var(--nevada);
 }
 
+.message-display {
+    font-size: 0.8rem;
+    color: var(--anchor);
+    text-align: center;
+    margin-top: 50px;
+}
+
 .gameboard-div div p,
 .reset-text {
     visibility: hidden;
